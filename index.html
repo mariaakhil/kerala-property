@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Property</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap / Icons (only include once in your base layout) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<!-- TOP BAR -->
+<div class="topbar py-1 d-none d-md-block">
+  <div class="container d-flex align-items-center gap-3">
+    <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
+    <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
+    <!-- UAE flag on far right -->
+    <span class="ms-auto d-inline-flex align-items-center gap-2">
+      <img src="images/f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" alt="UAE" class="flag">
+      <small class="d-none d-lg-inline">UAE</small>
+    </span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <!-- Brand -->
+   <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
+  <img src="/images/KPO.png" alt="Kerala Property Online" class="brand-logo" style="width: 200px;" >
+  
+</a>
+
+
+    <!-- Right side (desktop) + Toggler -->
+    <div class="d-flex align-items-center ms-auto order-lg-2">
+      <a href="/login" class="btn btn-link d-none d-lg-inline-flex align-items-center me-2 text-dark">
+        <i class="fa-regular fa-user me-2"></i> Login / Register
+      </a>
+
+      <a href="/add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
+        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+      </a>
+
+     
+
+      <!-- Hamburger (make sure navbar-light is on the <nav> so the icon shows) -->
+      <button class="navbar-toggler ms-2 border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Collapsible menu -->
+    <div class="collapse navbar-collapse order-lg-1" id="mainNav">
+      <ul class="navbar-nav ms-lg-4 me-auto">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" aria-current="page" href="/">Home</a>
+        </li>
+
+        <!-- Properties dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="propDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Properties
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="propDD">
+            <li><a class="dropdown-item" href="/properties/rent">For Rent</a></li>
+            <li><a class="dropdown-item" href="/properties/buy">For Sale</a></li>
+            <li><a class="dropdown-item" href="/properties/commercial">Commercial</a></li>
+            <li><a class="dropdown-item" href="/properties/agents">Agents</a></li>
+          </ul>
+        </li>
+
+        <!-- Blogs dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="blogDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Blogs
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="blogDD">
+            <li><a class="dropdown-item" href="/blog">All Posts</a></li>
+            <li><a class="dropdown-item" href="/blog/tips">Tips & Guides</a></li>
+            <li><a class="dropdown-item" href="/blog/news">Market News</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Mobile-only actions -->
+      <ul class="navbar-nav d-lg-none">
+        <li class="nav-item">
+          <a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a>
+        </li>
+        <li class="nav-item my-2">
+          <a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <img src="/images/f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" class="flag me-2" alt="UAE"> UAE
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero-spot position-relative">
+  <!-- Main image (masked with slanted shape) -->
+  <div class="hero-media">
+    <img id="heroMain" src="/images/home1 (4).png" alt="Featured home">
+  </div>
+
+  <!-- Left text/content -->
+  <div class="container position-relative">
+    <div class="hero-content py-5 py-lg-6" style="margin-top: 50px;">
+      <!-- badge -->
+<span class="hero-badge mb-3">Discover Your Ideal Property Today!</span>
+
+<!-- title -->
+<h1 class="hero-title text-white fw-semibold mb-3">
+  Elegant Homes For<br>Elevated Lifestyles
+</h1>
+
+<!-- CTA -->
+<a href="/properties" class="btn btn-brand text-white mb-4">Find Your Dream Home Now</a>
+
+<!-- Tabs + Search -->
+<div class="search-wrap">
+  <!-- tabs -->
+  <ul class="nav nav-pills hero-pills" id="intentTabs">
+    <li class="nav-item">
+      <button class="nav-link active" type="button" data-intent="sale">For Sale</button>
+    </li>
+    <li class="nav-item ms-2">
+      <button class="nav-link" type="button" data-intent="rent">For Rent</button>
+    </li>
+  </ul>
+
+  <!-- search card -->
+  <form class="hero-form mt-2" action="/search" method="get">
+    <input type="hidden" name="intent" id="intentInput" value="sale">
+    <div class="input-group input-group-lg">
+      <span class="input-group-text bg-white border-0">
+        <i class="fa-solid fa-location-dot"></i>
+      </span>
+      <input name="q" type="text" class="form-control border-0"
+             placeholder="Enter an address, neighborhood, city, or ZIP code">
+      <button class="btn btn-link text-secondary d-none d-md-inline px-3" type="button">
+        Advanced
+      </button>
+      <button class="btn btn-brand text-white" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+  </form>
+</div>
+</div>
+  
+
+  <!-- Circle thumbnails -->
+ <div class="hero-thumbs">
+  <button class="thumb active" type="button" aria-label="Home 1" data-big="/images/home1 (4).png">
+    <img src="/images/home1 (4).png" alt="Home 1">
+  </button>
+  <button class="thumb" type="button" aria-label="Home 2" data-big="/images/home1 (2).png">
+    <img src="/images/home1 (2).png" alt="Home 2">
+  </button>
+  <button class="thumb" type="button" aria-label="Home 3" data-big="/images/home1 (1).png">
+    <img src="/images/home1 (1).png" alt="Home 3">
+  </button>
+</div>
+
+</section>
+
+
+
+
+<section class="about-block py-5 py-lg-6">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <!-- LEFT: Mosaic -->
+      <div class="col-lg-6 order-2 order-lg-1">
+        <div class="mosaic">
+          <figure class="tile tall shadow-sm">
+            <img src="/images/flat.png" alt="tall">
+          </figure>
+          <figure class="tile square shadow-sm">
+            <img src="/images/image.png" alt="square">
+          </figure>
+          <figure class="tile wide shadow-sm">
+            <img src="/images/home.png" alt="wide">
+          </figure>
+
+          <!-- Floating social proof card -->
+          <div class="happy-card shadow">
+            <div class="small fw-semibold mb-1">Our Happy<br>Customer</div>
+            <div class="d-flex align-items-center">
+              <div class="avatar-stack me-2">
+                <img src="/images/boy.png" alt="">
+                <img src="/images/girl.png" alt="">
+                <img src="/images/av3.jpg" alt="">
+                <img src="/images/av4.jpg" alt="">
+                <img src="/images/av5.jpg" alt="">
+              </div>
+              <span class="badge rounded-pill bg-warning text-dark fw-semibold">2K+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Content -->
+      <div class="col-lg-6 order-1 order-lg-2">
+        <span class="badge rounded-pill bg-teal-soft text-teal fw-semibold mb-3">About Housefind</span>
+        <h2 class="display-6 fw-semibold mb-3">Embrace the<br>Elegance Our<br>Exclusive Property</h2>
+        <p class="text-secondary mb-4">
+          At Housefind, we’re redefining the way people find, sell, and invest in properties.
+          Our mission is to simplify real estate by providing innovative solutions and expert guidance.
+        </p>
+
+        <div class="row g-4 mb-4">
+          <div class="col-4">
+            <div class="stat">
+              <div class="stat-num">45K</div>
+              <div class="stat-label">Homes Sold</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat">
+              <div class="stat-num">10K</div>
+              <div class="stat-label">Happy Client</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/properties" class="btn btn-brand text-white">
+          See All Properties <i class="fa-solid fa-arrow-right-long ms-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="featured py-5">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="d-flex align-items-center flex-wrap gap-3 mb-2">
+      <!-- Section header -->
+<div class="section-head mb-3">
+  <span class="badge bg-teal-soft text-teal fw-semibold d-inline-block mb-2">
+    Our Top Property
+  </span>
+
+  <div class="d-flex align-items-center gap-3">
+    <h2 class="h3 fw-bold m-0">Our Featured Properties</h2>
+    
+  </div>
+</div>
+
+      <a href="/properties" class="btn btn-brand text-white ms-auto">
+        See All Properties <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+      </a>
+    </div>
+
+    <!-- Filter chips -->
+<div class="filters d-flex flex-wrap gap-2 mb-4 justify-content-center">
+  <button class="chip active" data-filter="all">
+    <i class="fa-solid fa-layer-group me-1"></i> All
+  </button>
+  <button class="chip" data-filter="villas">
+    <i class="fa-solid fa-house-chimney me-1"></i> Villas
+  </button>
+  <button class="chip" data-filter="apartments">
+    <i class="fa-solid fa-building me-1"></i> Apartments
+  </button>
+  <button class="chip" data-filter="houses">
+    <i class="fa-solid fa-house me-1"></i> Houses
+  </button>
+  <button class="chip" data-filter="condos">
+    <i class="fa-solid fa-city me-1"></i> Condos
+  </button>
+  <button class="chip" data-filter="retail">
+    <i class="fa-solid fa-store me-1"></i> Retail
+  </button>
+</div>
+
+
+    <!-- Grid -->
+    <div class="row g-4" id="propGrid">
+
+      <!-- Card -->
+      <div class="col-12 col-md-6 col-lg-4 prop" data-cat="villas">
+        <div class="prop-card h-100">
+          <div class="prop-media position-relative rounded-3 overflow-hidden">
+            <div class="ratio ratio-4x3">
+              <img class="prop-img" src="/images/property.png" alt="The Parkview Residence">
+            </div>
+
+            <!-- top-left tags -->
+            <div class="position-absolute top-0 start-0 p-2 d-flex gap-2">
+              <span class="tag">Featured</span>
+              <span class="tag">For Rent</span>
+            </div>
+
+            <!-- top-right actions -->
+            <div class="position-absolute bottom-0 end-0 p-2 d-flex gap-2">
+              <a href="#" class="act"><i class="fa-regular fa-heart"></i></a>
+              <a href="#" class="act"><i class="fa-solid fa-arrow-right-arrow-left"></i></a>
+              <a href="#" class="act"><i class="fa-solid fa-share-nodes"></i></a>
+            </div>
+
+            <!-- price -->
+            <span class="price-badge">$820,000</span>
+          </div>
+
+          <div class="prop-body pt-2">
+            <h5 class="mb-1">The Parkview Residence</h5>
+            <div class="text-muted small mb-2">Los Angeles City, CA, USA</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="spec"><i class="fa-solid fa-bed me-1"></i>12</span>
+              <span class="spec"><i class="fa-solid fa-bath me-1"></i>08</span>
+              <span class="spec"><i class="fa-regular fa-square me-1"></i>1200 SQ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat with different categories -->
+      <div class="col-12 col-md-6 col-lg-4 prop" data-cat="apartments">
+        <div class="prop-card h-100">
+          <div class="prop-media position-relative rounded-3 overflow-hidden">
+            <div class="ratio ratio-4x3">
+              <img class="prop-img" src="/images/property1.png" alt="Golden Valley Estates">
+            </div>
+            <div class="position-absolute top-0 start-0 p-2 d-flex gap-2">
+              <span class="tag">Featured</span>
+              <span class="tag">For Rent</span>
+            </div>
+            <div class="position-absolute bottom-0 end-0 p-2 d-flex gap-2">
+              <a href="#" class="act"><i class="fa-regular fa-heart"></i></a>
+              <a href="#" class="act"><i class="fa-solid fa-arrow-right-arrow-left"></i></a>
+              <a href="#" class="act"><i class="fa-solid fa-share-nodes"></i></a>
+            </div>
+            <span class="price-badge">$820,000</span>
+          </div>
+          <div class="prop-body pt-2">
+            <h5 class="mb-1">Golden Valley Estates</h5>
+            <div class="text-muted small mb-2">Los Angeles City, CA, USA</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="spec"><i class="fa-solid fa-bed me-1"></i>12</span>
+              <span class="spec"><i class="fa-solid fa-bath me-1"></i>08</span>
+              <span class="spec"><i class="fa-regular fa-square me-1"></i>1200 SQ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 prop" data-cat="houses">
+        <div class="prop-card h-100">
+          <div class="prop-media position-relative rounded-3 overflow-hidden">
+            <div class="ratio ratio-4x3">
+              <img class="prop-img" src="/images/property.png" alt="Silver Birch Residence">
+            </div>
+            <div class="position-absolute top-0 start-0 p-2 d-flex gap-2">
+              <span class="tag">Featured</span>
+              <span class="tag">For Rent</span>
+            </div>
+            <div class="position-absolute bottom-0 end-0 p-2 d-flex gap-2">
+              <a href="#" class="act"><i class="fa-regular fa-heart"></i></a>
+              <a href="#" class="act"><i class="fa-solid fa-arrow-right-arrow-left"></i></a>
+              <a href="#" class="act"><i class="fa-solid fa-share-nodes"></i></a>
+            </div>
+            <span class="price-badge">$820,000</span>
+          </div>
+          <div class="prop-body pt-2">
+            <h5 class="mb-1">Silver Birch Residence</h5>
+            <div class="text-muted small mb-2">Los Angeles City, CA, USA</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="spec"><i class="fa-solid fa-bed me-1"></i>12</span>
+              <span class="spec"><i class="fa-solid fa-bath me-1"></i>08</span>
+              <span class="spec"><i class="fa-regular fa-square me-1"></i>1200 SQ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- add more .prop cards with data-cat="condos", "retail", etc. -->
+    </div>
+     <!-- View more (above heading) -->
+      <br>
+    <div class="text-center mb-3">
+      <a href="/properties" class="btn btn-outline-teal rounded-pill px-4">View more</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="help-section py-5">
+  <div class="container">
+
+   
+
+    <!-- Badge + heading -->
+    <div class="text-center mb-4">
+      <span class="badge bg-teal-soft text-teal fw-semibold mb-2">Our Top Property</span>
+      <h2 class="h3 fw-bold m-0">See How Realtor Can Help</h2>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-4">
+      <!-- 1 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="help-card h-100 text-center">
+          <div class="help-icon mb-3">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Buy a property</h5>
+          <p class="text-muted mb-4">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
+          <a href="/buy" class="btn btn-outline-teal rounded-pill">Find a home <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
+        </div>
+      </div>
+
+      <!-- 2 (featured) -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="help-card h-100 text-center is-featured">
+          <div class="help-icon mb-3">
+            <i class="fa-solid fa-sign-hanging"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Sell a property</h5>
+          <p class="text-muted mb-4">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
+          <a href="/sell" class="btn btn-teal rounded-pill">Place an ad <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="help-card h-100 text-center">
+          <div class="help-icon mb-3">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Rent a property</h5>
+          <p class="text-muted mb-4">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
+          <a href="/rent" class="btn btn-outline-teal rounded-pill">Find a rental <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="cities-section py-5">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mb-3">
+      <div>
+        <span class="badge bg-teal-soft text-teal fw-semibold mb-2">Our Top Property</span>
+        <h2 class="h3 fw-bold m-0">Properties By Cities</h2>
+      </div>
+      <a href="/cities" class="btn btn-link fw-semibold text-dark d-none d-md-inline">
+        See All Cities <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+      </a>
+    </div>
+
+    <!-- Grid -->
+    <div class="row g-3 g-md-4">
+      <!-- Item -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/new-york" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3">
+            <img src="/images/city.jpg" alt="New York">
+          </span>
+          <span class="flex-grow-1">
+            <span class="city-name d-block">New York</span>
+            <small class="city-count">10 Properties</small>
+          </span>
+        </a>
+      </div>
+
+      <!-- Repeat for each city -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/chicago" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3"><img src="/images/cities/chicago.jpg" alt="Chicago"></span>
+          <span><span class="city-name d-block">Chicago</span><small class="city-count">1 Property</small></span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/manhattan" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3"><img src="/images/cities/manhattan.jpg" alt="Manhattan"></span>
+          <span><span class="city-name d-block">Manhattan</span><small class="city-count">0 Properties</small></span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/san-diego" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3"><img src="/images/cities/sandiego.jpg" alt="San Diego"></span>
+          <span><span class="city-name d-block">San Diego</span><small class="city-count">1 Property</small></span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/san-francisco" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3"><img src="/images/cities/sf.jpg" alt="San Francisco"></span>
+          <span><span class="city-name d-block">San Francisco</span><small class="city-count">1 Property</small></span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/los-angeles" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3"><img src="/images/cities/la.jpg" alt="Los Angeles"></span>
+          <span><span class="city-name d-block">Los Angeles</span><small class="city-count">2 Properties</small></span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/california" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3"><img src="/images/cities/california.jpg" alt="California"></span>
+          <span><span class="city-name d-block">California</span><small class="city-count">0 Properties</small></span>
+        </a>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="/cities/new-jersey" class="city-card d-flex align-items-center text-decoration-none">
+          <span class="city-thumb me-3"><img src="/images/cities/newjersey.jpg" alt="New Jersey"></span>
+          <span><span class="city-name d-block">New Jersey</span><small class="city-count">0 Properties</small></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile 'See all' -->
+    <div class="text-center mt-3 d-md-none">
+      <a href="/cities" class="btn btn-outline-teal rounded-pill px-4">See All Cities</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<section class="latest-section py-5">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-3">
+      <div>
+        <span class="badge bg-teal-soft text-teal fw-semibold mb-2">Our Top Property</span>
+        <h2 class="h3 fw-bold m-0">Latest Properties</h2>
+      </div>
+
+      <!-- Toggle -->
+      <div class="toggle-group" role="group" aria-label="Filter by">
+        <button class="toggle-btn active" data-filter="sale">For Sale</button>
+        <button class="toggle-btn" data-filter="rent">For Rent</button>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="row g-4" id="latestGrid">
+      <!-- SALE -->
+      <div class="col-12 col-md-6 col-lg-3 listing" data-type="sale">
+        <article class="listing-card h-100">
+          <div class="listing-media position-relative rounded-3 overflow-hidden">
+            <div class="ratio ratio-16x9">
+              <img class="img-cover" src="/images/link.png" alt="Luxury Family Home">
+                
+            </div>
+           
+          </div>
+           
+          <div class="p-2">
+            <span class="price">$5800</span>
+            <h6 class="mb-1">Luxury Family Home</h6>
+            <small class="text-muted d-block mb-2">132 Greene Ave</small>
+            <div class="d-flex flex-wrap gap-2 small text-muted">
+              <span><i class="fa-solid fa-bed me-1"></i>6 Beds</span>
+              <span><i class="fa-solid fa-bath me-1"></i>2 Baths</span>
+              <span><i class="fa-regular fa-square me-1"></i>400 sqft</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- SALE -->
+      <div class="col-12 col-md-6 col-lg-3 listing" data-type="sale">
+        <article class="listing-card h-100">
+          <div class="listing-media position-relative rounded-3 overflow-hidden">
+            <div class="ratio ratio-16x9">
+              <img class="img-cover" src="/images/Link.png" alt="Gorgeous Villa Bay">
+            </div>
+           
+          </div>
+          <div class="p-2">
+             <span class="price">$400</span>
+            <h6 class="mb-1">Gorgeous Villa Bay</h6>
+            <small class="text-muted d-block mb-2">18 Grattan St, Brooklyn</small>
+            <div class="d-flex flex-wrap gap-2 small text-muted">
+              <span><i class="fa-solid fa-bed me-1"></i>8 Beds</span>
+              <span><i class="fa-solid fa-bath me-1"></i>2 Baths</span>
+              <span><i class="fa-regular fa-square me-1"></i>300 sqft</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- RENT -->
+      <div class="col-12 col-md-6 col-lg-3 listing" data-type="rent">
+        <article class="listing-card h-100">
+          <div class="listing-media position-relative rounded-3 overflow-hidden">
+            <div class="ratio ratio-16x9">
+              <img class="img-cover" src="/images/Link.png" alt="Skyper Pool Apartment">
+            </div>
+           
+          </div>
+          <div class="p-2">
+             <span class="price">$5800</span>
+            <h6 class="mb-1">Skyper Pool Apartment</h6>
+            <small class="text-muted d-block mb-2">151 Tompkins Ave</small>
+            <div class="d-flex flex-wrap gap-2 small text-muted">
+              <span><i class="fa-solid fa-bed me-1"></i>4 Beds</span>
+              <span><i class="fa-solid fa-bath me-1"></i>1 Bath</span>
+              <span><i class="fa-regular fa-square me-1"></i>200 sqft</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- RENT -->
+      <div class="col-12 col-md-6 col-lg-3 listing" data-type="rent">
+        <article class="listing-card h-100">
+          <div class="listing-media position-relative rounded-3 overflow-hidden">
+            <div class="ratio ratio-16x9">
+              <img class="img-cover" src="/images/Link.png" alt="Diamond Manor Apartment">
+            </div>
+           
+          </div>
+          <div class="p-2">
+             <span class="price">$5800</span>
+            <h6 class="mb-1">Diamond Manor Apartment</h6>
+            <small class="text-muted d-block mb-2">343 Franklin Ave</small>
+            <div class="d-flex flex-wrap gap-2 small text-muted">
+              <span><i class="fa-solid fa-bed me-1"></i>6 Beds</span>
+              <span><i class="fa-solid fa-bath me-1"></i>2 Baths</span>
+              <span><i class="fa-regular fa-square me-1"></i>200 sqft</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- …duplicate more cards tagged data-type="sale" or "rent" -->
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="testi-section py-5">
+  <div class="container">
+    <!-- Header -->
+    <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mb-4">
+      <div>
+        <span class="badge bg-teal-soft text-teal fw-semibold mb-2">Trusted By Thousand People</span>
+        <h2 class="h3 fw-bold m-0">Hear Our Happy Clients</h2>
+      </div>
+      <a href="/testimonials" class="btn btn-teal rounded-pill text-white">
+        View All Testimonials <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+      </a>
+    </div>
+
+    <div class="row g-4 align-items-center">
+      <!-- Left photo -->
+      <div class="col-lg-5">
+        <div class="ratio ratio-4x3 rounded-3 overflow-hidden shadow-sm">
+          <img src="/images/client.png" class="w-100 h-100" style="object-fit:cover" alt="Happy clients">
+        </div>
+      </div>
+
+      <!-- Quote + avatars -->
+      <div class="col-lg-7">
+        <div class="row g-3 align-items-start">
+          <!-- Quote + author -->
+          <div class="col-12 col-md-10">
+            <div class="quote-card p-3 p-md-4">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div id="tStars" class="stars" aria-live="polite" aria-label="Rating"></div>
+                <i class="fa-solid fa-quote-right ms-auto opacity-75"></i>
+              </div>
+              <p id="tQuote" class="mb-3">
+                “From start to finish, the team was exceptional. They listened to our needs,
+                provided expert guidance, and found us the perfect home.”
+              </p>
+            </div>
+
+            <!-- Author row (sits UNDER the bubble) -->
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center gap-2">
+                <img id="tAvatar" class="rounded-circle border" src="/images/boy.png" alt="Sheldon Jackson">
+                <div>
+                  <div id="tName" class="fw-semibold">Sheldon Jackson</div>
+                  <small id="tRole" class="text-muted">Shop Store Owner</small>
+                </div>
+              </div>
+              <img src="/images/google.svg" alt="Google" class="d-none d-sm-block" style="height:20px">
+            </div>
+          </div>
+
+          <!-- Avatar rail -->
+          <div class="col-12 col-md-2">
+            <div class="avatar-rail d-flex d-md-block gap-3">
+              <button class="avatar-btn active" type="button" aria-selected="true"
+                      data-quote="From start to finish, the team was exceptional. They listened to our needs, provided expert guidance, and found us the perfect home."
+                      data-name="Sheldon Jackson" data-role="Shop Store Owner" data-rating="5"
+                      data-photo="/images/boy.png">
+                <img src="/images/boy.png" alt="Sheldon Jackson">
+              </button>
+
+              <button class="avatar-btn" type="button"
+                      data-quote="Amazing experience! Super professional and friendly. We sold above asking and found a rental in days."
+                      data-name="Lena Stewart" data-role="Product Designer" data-rating="5"
+                      data-photo="/images/girl.png">
+                <img src="/images/girl.png" alt="Lena Stewart">
+              </button>
+
+              <button class="avatar-btn" type="button"
+                      data-quote="Transparent process, clear communication, and great market insight. We’ll recommend them to friends."
+                      data-name="Marco Chen" data-role="Software Engineer" data-rating="4"
+                      data-photo="/images/boy.png">
+                <img src="/images/boy.png" alt="Marco Chen">
+              </button>
+
+              <button class="avatar-btn" type="button"
+                      data-quote="They handled everything. Stress-free from day one and the best deal we could hope for!"
+                      data-name="Ava Patel" data-role="Restaurant Owner" data-rating="5"
+                      data-photo="/images/girl.png">
+                <img src="/images/girl.png" alt="Ava Patel">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- CTA + Subscribe -->
+<section class="newsletter-cta position-relative overflow-hidden py-5 py-lg-6">
+  <div class="container position-relative">
+    <div class="row g-4 align-items-center">
+      <!-- Left: text -->
+      <div class="col-lg-6">
+        <h2 class="display-6 fw-bold text-white mb-3">
+          Find Your Dream Home<br>Today Where Comfort<br>Meets Style
+        </h2>
+        <p class="text-white-50 mb-4 pe-lg-5">
+          At HouseBox, we believe the finding a home is more a transaction—it's a
+          journey discovering the perfect space that fits your lifestyle.
+        </p>
+
+        <!-- Subscribe -->
+        <form class="subs-form" action="/subscribe" method="post">
+          <div class="input-group input-group-lg subs-group shadow-sm">
+            <input type="email" class="form-control border-0" placeholder="Email Address" required>
+            <button class="btn btn-brand text-white rounded-3" type="submit">
+              Subscribe <i class="fa-solid fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: building image -->
+      <div class="col-lg-6 position-relative order-first order-lg-last">
+        <img src="/images/house.png" alt="Modern building"
+             class="cta-img d-block mx-auto mx-lg-0">
+      </div>
+    </div>
+  </div>
+
+ 
+</section>
+
+<!-- Teal strip -->
+<section class="brand-strip py-4">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7 d-flex align-items-center gap-3">
+        <img src="/images/KPO.png" alt="Housefind" class="brand-mark">
+        <p class="mb-0 text-white-75 small">
+          Your trusted partner for buying, selling, and renting properties with seamless,
+          personalized solutions.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <div class="d-flex align-items-center gap-3 justify-content-lg-end">
+          <span class="text-white-75 small">Follow Us:</span>
+          <a class="soc" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer class="site-footer pt-5">
+  <div class="container">
+
+    <div class="row g-4 g-lg-5">
+      <!-- Brand + address -->
+      <div class="col-12 col-lg-4">
+        <div class="d-flex align-items-center mb-3">
+          <img src="/images/KPO.png" alt="Housefind" style="height:4
+          2px; width: 300px;" class="me-2">
+          <strong class="fs-5"></strong>
+        </div>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Address</li>
+          <li class="fw-semibold text-body">789 Queensberry Street, North<br>Melbourne VIC 3051, Australia.</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Total Free Customer Care</li>
+          <li class="fw-semibold text-body">+(088) 123 456 789</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted">
+          <li class="text-uppercase text-body-secondary mb-1">Live Support?</li>
+          <li class="fw-semibold"><a href="mailto:hi@homez.com" class="link-body-emphasis">hi@homez.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Popular search + Discovery -->
+      <div class="col-6 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Popular Search</div>
+          <ul class="foot-links">
+            <li><a href="#">Apartment for Sale</a></li>
+            <li><a href="#">Apartment for Rent</a></li>
+            <li><a href="#">Offices for Sale</a></li>
+            <li><a href="#">Offices for Rent</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-block mt-3">
+          <div class="foot-title">Discovery</div>
+          <ul class="foot-links">
+            <li><a href="#">Chicago</a></li>
+            <li><a href="#">Los Angeles</a></li>
+            <li><a href="#">New Jersey</a></li>
+            <li><a href="#">New York</a></li>
+            <li><a href="#">California</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="col-6 col-lg-2">
+        <div class="footer-block">
+          <div class="foot-title">Quick Links</div>
+          <ul class="foot-links">
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Pricing Plans</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Newsletter + apps -->
+      <div class="col-12 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Keep Yourself Up to Date</div>
+
+          <form class="newsletter mb-3" action="/subscribe" method="post">
+            <div class="input-group input-group-sm">
+              <input type="email" class="form-control rounded-start-pill" placeholder="Your email" required>
+              <button class="btn btn-teal rounded-end-pill px-3" type="submit" aria-label="Subscribe">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+
+          <div class="foot-title mt-3">Apps</div>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#" class="app-badge">
+              <i class="fa-brands fa-apple fs-4 me-2"></i>
+              <span>
+                <small class="d-block lh-1">Download on the</small> Apple Store
+              </span>
+            </a>
+            <a href="#" class="app-badge">
+              <i class="fa-brands fa-google-play fs-4 me-2"></i>
+              <span>
+                <small class="d-block lh-1">Get it on</small> Google Play
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-rule mt-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center small text-muted py-3">
+      <span>© Homez — All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  (function(){
+    const main = document.getElementById('heroMain');
+    const buttons = document.querySelectorAll('.hero-thumbs .thumb');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) return;
+
+        // switch active state
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const nextSrc = btn.dataset.big;
+        if (!nextSrc) return;
+
+        // fade out, swap, fade in (works even if image 404s)
+        main.style.opacity = 0;
+        const img = new Image();
+        img.onload = img.onerror = function(){
+          main.src = nextSrc;
+          requestAnimationFrame(() => { main.style.opacity = 1; });
+        };
+        img.src = nextSrc;
+      });
+    });
+  })();
+
+
+  document.querySelectorAll('#intentTabs .nav-link').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#intentTabs .nav-link').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('intentInput').value = btn.dataset.intent; // "sale" | "rent"
+    });
+  });
+
+
+
+   (function(){
+    const chips = document.querySelectorAll('.filters .chip');
+    const cards = document.querySelectorAll('#propGrid .prop');
+
+    chips.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        chips.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        cards.forEach(card=>{
+          const cats = (card.dataset.cat || '').toLowerCase().split(/\s+/);
+          const show = (filter === 'all') || cats.includes(filter);
+          card.classList.toggle('d-none', !show);
+        });
+      });
+    });
+  })();
+
+
+
+
+
+ 
+  (function(){
+    const buttons = document.querySelectorAll('.toggle-group .toggle-btn');
+    const cards = document.querySelectorAll('#latestGrid .listing');
+
+    function apply(filter){
+      cards.forEach(card => {
+        const show = (filter === 'all') || (card.dataset.type === filter);
+        card.classList.toggle('d-none', !show);
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        apply(btn.dataset.filter);      // 'sale' or 'rent'
+      });
+    });
+
+    apply('sale');                      // default state like screenshot
+  })();
+
+
+
+
+
+ 
+(function () {
+  const quoteEl  = document.getElementById('tQuote');
+  const nameEl   = document.getElementById('tName');
+  const roleEl   = document.getElementById('tRole');
+  const avatarEl = document.getElementById('tAvatar');
+  const starsEl  = document.getElementById('tStars');
+  const btns     = document.querySelectorAll('.avatar-btn');
+
+  function renderStars(n) {
+    const count = Math.max(0, Math.min(5, parseInt(n, 10) || 0));
+    starsEl.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('i');
+      s.className = 'fa-solid fa-star';
+      starsEl.appendChild(s);
+    }
+  }
+
+  function setFrom(btn) {
+    const quote  = btn.dataset.quote || '';
+    const name   = btn.dataset.name  || '';
+    const role   = btn.dataset.role  || '';
+    const rating = btn.dataset.rating || 5;
+
+    // Prefer data-photo; fall back to the img inside the button
+    let photo = btn.dataset.photo;
+    if (!photo) {
+      const img = btn.querySelector('img');
+      photo = img ? img.getAttribute('src') : '';
+    }
+
+    quoteEl.textContent = `“${quote}”`;
+    nameEl.textContent  = name;
+    roleEl.textContent  = role;
+    if (photo) { avatarEl.src = photo; avatarEl.alt = name || 'Client photo'; }
+    renderStars(rating);
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      setFrom(btn);
+    });
+  });
+
+  // initialize with the active (or first) avatar
+  const initial = document.querySelector('.avatar-btn.active') || btns[0];
+  if (initial) setFrom(initial);
+})();
+</script>
+
+
+
+
+
+</body>
+</html>
