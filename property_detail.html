@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Property Detail Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+      <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap / Icons (only include once in your base layout) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+<!-- TOP BAR -->
+<div class="topbar py-1 d-none d-md-block">
+  <div class="container d-flex align-items-center gap-3">
+    <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
+    <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
+    <!-- UAE flag on far right -->
+    <span class="ms-auto d-inline-flex align-items-center gap-2">
+      <img src="f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" alt="UAE" class="flag">
+      <small class="d-none d-lg-inline">UAE</small>
+    </span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <!-- Brand -->
+   <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
+  <img src="KPO.png" alt="Kerala Property Online" class="brand-logo">
+</a>
+
+
+
+    <!-- Right side (desktop) + Toggler -->
+    <div class="d-flex align-items-center ms-auto order-lg-2">
+      <a href="" class="btn btn-link text-decoration-none d-none d-lg-inline-flex align-items-center me-2 text-dark">
+  <i class="fa-regular fa-user me-2"></i> Login / Register
+</a>
+
+
+      <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
+        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+      </a>
+
+     
+
+      <!-- Hamburger (make sure navbar-light is on the <nav> so the icon shows) -->
+      <button class="navbar-toggler ms-2 border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Collapsible menu -->
+    <div class="collapse navbar-collapse order-lg-1" id="mainNav">
+      <ul class="navbar-nav ms-lg-4 me-auto">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" aria-current="page" href="/">Home</a>
+        </li>
+
+        <!-- Properties dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="propDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Properties
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="propDD">
+            <li><a class="dropdown-item" href="/properties/rent">For Rent</a></li>
+            <li><a class="dropdown-item" href="/properties/buy">For Sale</a></li>
+            <li><a class="dropdown-item" href="/properties/commercial">Commercial</a></li>
+            <li><a class="dropdown-item" href="/properties/agents">Agents</a></li>
+          </ul>
+        </li>
+
+        <!-- Blogs dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="blogDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Blogs
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="blogDD">
+            <li><a class="dropdown-item" href="/blog">All Posts</a></li>
+            <li><a class="dropdown-item" href="/blog/tips">Tips & Guides</a></li>
+            <li><a class="dropdown-item" href="/blog/news">Market News</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Mobile-only actions -->
+      <ul class="navbar-nav d-lg-none">
+        <li class="nav-item">
+          <a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a>
+        </li>
+        <li class="nav-item my-2">
+          <a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <img src="f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" class="flag me-2" alt="UAE"> UAE
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- PROPERTY META -->
+<section class="prop-meta py-3 py-md-4">
+  <div class="container">
+    <div class="row g-3 align-items-start">
+      <!-- Left: price -->
+      <div class="col-12 col-md-7">
+        <span class="badge bg-primary-subtle text-primary fw-semibold mb-2">Featured</span>
+
+        <div class="d-flex flex-wrap align-items-baseline gap-2">
+          <h3 class="m-0 lh-1 fw-bold">
+            ₹<span class="fw-bold">1.75</span> <span class="fw-semibold">Cr</span>
+          </h3>
+          <small class="text-secondary">@ 52,238 per sq.ft.</small>
+        </div>
+
+        <a href="#" class="text-decoration-none d-inline-block mt-2 fw-semibold prop-emi">
+          Estimated EMI ₹1,39,773
+        </a>
+      </div>
+
+      <!-- Right: specs -->
+      <div class="col-12 col-md-5 ps-md-4 md-border-start">
+        <h4 class="h4 m-0 fw-semibold">1BHK <span class="fw-normal">1Bath</span></h4>
+        <div class="text-secondary mt-1">Flat/Apartment for Sale</div>
+        <small class="text-muted d-block mt-1">in NEW CHS, Dadar East, Mumbai</small>
+      </div>
+    </div>
+
+    <!-- RERA strip -->
+    <div class="rera-strip d-flex flex-wrap align-items-center gap-2 mt-3">
+      <span class="badge rera-pill">
+        RERA STATUS <i class="fa-solid fa-circle-info ms-1"></i>
+      </span>
+      <span class="badge rera-state">NOT AVAILABLE</span>
+      <span class="text-muted">Website:</span>
+      <a class="link-underline-opacity-0" target="_blank" href="https://maharera.maharashtra.gov.in/">
+        https://maharera.maharashtra.gov.in/
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="prop-specs py-4">
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+
+      <!-- LEFT: media (image used here) -->
+      <div class="col-lg-6">
+        <div class="media-pane position-relative rounded-4 overflow-hidden shadow-sm h-100">
+          <img src="house.png" alt="Property media"
+               class="w-100 h-100" style="object-fit:cover">
+
+          <!-- Top tabs overlay (static) -->
+         
+        </div>
+      </div>
+
+      <!-- RIGHT: details grid -->
+      <div class="col-lg-6">
+        <div class="spec-card rounded-4 h-100">
+          <div class="spec-grid">
+            <!-- Row 1 -->
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Area</div>
+                <div class="spec-value">Carpet area: <strong>335</strong> <a href="#" class="spec-link">sq.ft.</a>
+                  <div class="small text-muted">(31.12 sq.m.)</div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-bed"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Configuration</div>
+                <div class="spec-value">1 Bedroom , 1 Bathroom, No Balcony</div>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-tag"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Price</div>
+                <div class="spec-value">
+                  ₹ <strong>1.75 Crore</strong> + Govt Charges &amp; Tax
+                  <div class="small text-muted">@ 52,238 per sq.ft. <a href="#" class="spec-link">View Price Details</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Address</div>
+                <div class="spec-value">NEW CHS<br> Dadar East, Mumbai</div>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-building"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Floor Number</div>
+                <div class="spec-value"><strong>21<sup>st</sup></strong> of 22 Floors</div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-compass"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Facing</div>
+                <div class="spec-value">North-East</div>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-road"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Overlooking</div>
+                <div class="spec-value">Main Road</div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+              <div class="spec-text">
+                <div class="spec-label">Property Age</div>
+                <div class="spec-value">1 to 5 Year Old</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /RIGHT -->
+
+    </div>
+  </div>
+</section>
+
+<!-- PLACES NEARBY -->
+<section class="nearby-section py-3">
+  <div class="container">
+    <div class="nearby-card">
+      <!-- header -->
+      <div class="d-flex align-items-start justify-content-between flex-wrap gap-2">
+        <div class="d-flex align-items-start gap-2">
+          <span class="nearby-hero">
+            <i class="fa-solid fa-location-dot"></i>
+          </span>
+          <div>
+            <h5 class="m-0 fw-bold">Places nearby</h5>
+            <small class="text-muted">Dadar East, Mumbai</small>
+          </div>
+        </div>
+        <a href="#" class="nearby-view">View All (50)</a>
+      </div>
+
+      <!-- slider -->
+      <div class="nearby-slider mt-3">
+        <button class="nearby-nav left" aria-label="Scroll left">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="pills-mask">
+          <div class="pills-track">
+            <!-- sample chips -->
+            <a class="nb-pill" href="#"><i class="fa-solid fa-landmark"></i>Bank of India ATM</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-landmark"></i>Indian Bank ATM</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-square-plus"></i>Shree Vardhaman Sthanakvasi Jain Shravak Sangh Dadar …</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-bus"></i>Dadar Bus Stop</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-train-subway"></i>Dadar Metro</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-school"></i>Shivaji Park School</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-store"></i>Groceries &amp; More</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-mug-saucer"></i>Café Royale</a>
+            <a class="nb-pill" href="#"><i class="fa-solid fa-tree"></i>Five Gardens</a>
+          </div>
+        </div>
+
+        <button class="nearby-nav right" aria-label="Scroll right">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ABOUT + FURNISHED -->
+<section class="prop-about-furnish py-4">
+  <div class="container">
+
+    <!-- About Property -->
+    <div class="mb-4">
+      <h5 class="fw-semibold mb-2" style="color: #127782;">About Property</h5>
+      <div class="mb-2">
+        <span class="text-secondary fw-semibold">Address:</span>
+        <span class="text-muted">Dadar East, Mumbai</span>
+      </div>
+
+      <p id="aboutDesc" class="about-desc clamp-4 text-muted mb-1">
+        New CHS is one of Mumbai south's most sought-after destinations for apartments and this
+        1 BHK flat in Dadar East is your opportunity to be a part of this community. The flat is
+        north-East-Facing. The floor plan additionally contains 1 bedroom(s), 1 bathroom. All in all,
+        the flat is spread over a carpet area that optimizes space well and brings ample daylight to the rooms.
+      </p>
+      <button type="button" class="btn btn-link px-0 about-more" data-target="#aboutDesc">More »</button>
+
+      <hr class="soft-divider mt-3">
+    </div>
+
+    <!-- Furnished -->
+    <div>
+      <h5 class="fw-semibold mb-1" style="color: #127782;">Furnished</h5>
+      <div class="text-secondary small mb-3">Furnishing Details</div>
+
+      <ul class="amenity-grid list-unstyled m-0">
+        <!-- row 1 -->
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-box-archive"></i></span> <span>1 Wardrobe</span>
+        </li>
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-bed"></i></span> <span>1 Bed</span>
+        </li>
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-fan"></i></span> <span>2 Fan</span>
+        </li>
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-couch"></i></span> <span>1 Sofa</span>
+        </li>
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-utensils"></i></span> <span>1 Dining Table</span>
+        </li>
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-shower"></i></span> <span>1 Geyser</span>
+        </li>
+
+        <!-- row 2 -->
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-lightbulb"></i></span> <span>5 Light</span>
+        </li>
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-kitchen-set"></i></span> <span>1 Modular Kitchen</span>
+        </li>
+        <li class="amenity">
+          <span class="ico"><i class="fa-solid fa-bars-staggered"></i></span> <span>1 Curtains</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-regular fa-snowflake"></i></span> <span>No AC</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-fire-burner"></i></span> <span>No Chimney</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-wind"></i></span> <span>No Exhaust Fan</span>
+        </li>
+
+        <!-- row 3 -->
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-microchip"></i></span> <span>No Microwave</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-temperature-low"></i></span> <span>No Fridge</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-fire"></i></span> <span>No Stove</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-tv"></i></span> <span>No TV</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-soap"></i></span> <span>No Washing Machine</span>
+        </li>
+        <li class="amenity is-off">
+          <span class="ico"><i class="fa-solid fa-droplet"></i></span> <span>No Water Purifier</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<!-- FEATURES -->
+<section class="prop-features py-3">
+  <div class="container">
+
+    <hr class="soft-divider mb-3">
+
+    <h5 class="fw-semibold mb-3" style="color: #127782;">Features</h5>
+
+    <ul class="feature-list list-unstyled m-0">
+      <li class="feature">
+        <span class="fi"><i class="fa-solid fa-elevator"></i></span>
+        <span>Lift(s)</span>
+      </li>
+      <li class="feature">
+        <span class="fi"><i class="fa-solid fa-burn"></i></span>
+        <span>Piped-gas</span>
+      </li>
+      <li class="feature">
+        <span class="fi"><i class="fa-solid fa-user-shield"></i></span>
+        <span>Security Personnel</span>
+      </li>
+      <li class="feature">
+        <span class="fi"><i class="fa-solid fa-sun"></i></span>
+        <span>Natural Light</span>
+      </li>
+      <li class="feature">
+        <span class="fi"><i class="fa-solid fa-bed"></i></span>
+        <span>Airy Rooms</span>
+      </li>
+      <li class="feature">
+        <span class="fi"><i class="fa-solid fa-bed"></i></span>
+        <span>Spacious Interiors</span>
+      </li>
+      <li class="feature">
+        <span class="fi"><i class="fa-solid fa-cloud-rain"></i></span>
+        <span>Rain Water<br class="d-none d-md-inline"> Harvesting</span>
+      </li>
+    </ul>
+
+    <hr class="soft-divider mt-3">
+  </div>
+</section>
+
+
+
+
+<!-- CTA + Subscribe -->
+<section class="newsletter-cta position-relative overflow-hidden py-5 py-lg-6">
+  <div class="container position-relative">
+    <div class="row g-4 align-items-center">
+      <!-- Left: text -->
+      <div class="col-lg-6">
+        <h2 class="display-6 fw-bold text-white mb-3">
+          Find Your Dream Home<br>Today Where Comfort<br>Meets Style
+        </h2>
+        <p class="text-white-50 mb-4 pe-lg-5">
+          At HouseBox, we believe the finding a home is more a transaction—it's a
+          journey discovering the perfect space that fits your lifestyle.
+        </p>
+
+        <!-- Subscribe -->
+        <form class="subs-form" action="/subscribe" method="post">
+          <div class="input-group input-group-lg subs-group shadow-sm">
+            <input type="email" class="form-control border-0" placeholder="Email Address" required>
+            <button class="btn btn-brand text-white rounded-3" type="submit">
+              Subscribe <i class="fa-solid fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: building image -->
+      <div class="col-lg-6 position-relative order-first order-lg-last">
+        <img src="house.png" alt="Modern building"
+             class="cta-img d-block mx-auto mx-lg-0">
+      </div>
+    </div>
+  </div>
+
+ 
+</section>
+
+<!-- Teal strip -->
+<section class="brand-strip py-4">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7 d-flex align-items-center gap-3">
+        <img src="KPO.png" alt="Housefind" class="brand-mark">
+        <p class="mb-0 text-white-75 small">
+          Your trusted partner for buying, selling, and renting properties with seamless,
+          personalized solutions.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <div class="d-flex align-items-center gap-3 justify-content-lg-end">
+          <span class="text-white-75 small">Follow Us:</span>
+          <a class="soc" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="site-footer pt-5">
+  <div class="container">
+
+    <div class="row g-4 g-lg-5">
+      <!-- Brand + address -->
+      <div class="col-12 col-lg-4">
+        <div class="d-flex align-items-center mb-3">
+          <img src="KPO.png" alt="Housefind" style="height:4
+          2px; width: 300px;" class="me-2">
+          <strong class="fs-5"></strong>
+        </div>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Address</li>
+          <li class="fw-semibold text-body">789 Queensberry Street, North<br>Melbourne VIC 3051, Australia.</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Total Free Customer Care</li>
+          <li class="fw-semibold text-body">+(088) 123 456 789</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted">
+          <li class="text-uppercase text-body-secondary mb-1">Live Support?</li>
+          <li class="fw-semibold"><a href="mailto:hi@homez.com" class="link-body-emphasis">hi@homez.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Popular search + Discovery -->
+      <div class="col-6 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Popular Search</div>
+          <ul class="foot-links">
+            <li><a href="#">Apartment for Sale</a></li>
+            <li><a href="#">Apartment for Rent</a></li>
+            <li><a href="#">Offices for Sale</a></li>
+            <li><a href="#">Offices for Rent</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-block mt-3">
+          <div class="foot-title">Discovery</div>
+          <ul class="foot-links">
+            <li><a href="#">Chicago</a></li>
+            <li><a href="#">Los Angeles</a></li>
+            <li><a href="#">New Jersey</a></li>
+            <li><a href="#">New York</a></li>
+            <li><a href="#">California</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="col-6 col-lg-2">
+        <div class="footer-block">
+          <div class="foot-title">Quick Links</div>
+          <ul class="foot-links">
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Pricing Plans</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Newsletter + apps -->
+      <div class="col-12 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Keep Yourself Up to Date</div>
+
+          <form class="newsletter mb-3" action="/subscribe" method="post">
+            <div class="input-group input-group-sm">
+              <input type="email" class="form-control rounded-start-pill" placeholder="Your email" required>
+              <button class="btn btn-teal rounded-end-pill px-3" type="submit" aria-label="Subscribe">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+
+          
+      </div>
+    </div>
+
+    <hr class="footer-rule mt-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center small text-muted py-3">
+      <span>© Homez — All rights reserved</span>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  document.querySelectorAll('.nearby-slider').forEach(slider=>{
+    const track = slider.querySelector('.pills-track');
+    const btnL  = slider.querySelector('.nearby-nav.left');
+    const btnR  = slider.querySelector('.nearby-nav.right');
+
+    const step = () => Math.max(220, Math.floor(track.clientWidth * 0.8));
+
+    function updateArrows(){
+      const end = track.scrollWidth - track.clientWidth - 2;
+      btnL.classList.toggle('disabled', track.scrollLeft <= 0);
+      btnR.classList.toggle('disabled', track.scrollLeft >= end);
+    }
+    btnL.addEventListener('click', ()=> track.scrollBy({left: -step(), behavior:'smooth'}));
+    btnR.addEventListener('click', ()=> track.scrollBy({left:  step(), behavior:'smooth'}));
+    track.addEventListener('scroll', updateArrows);
+
+    // drag to scroll
+    let down=false, startX=0, startLeft=0;
+    track.addEventListener('pointerdown', e=>{ down=true; startX=e.clientX; startLeft=track.scrollLeft; track.setPointerCapture(e.pointerId); });
+    track.addEventListener('pointermove',  e=>{ if(!down) return; track.scrollLeft = startLeft - (e.clientX - startX); });
+    ['pointerup','pointercancel','mouseleave'].forEach(ev=> track.addEventListener(ev, ()=> down=false));
+
+    // wheel horizontal support
+    track.addEventListener('wheel', (e)=>{ if(Math.abs(e.deltaX) > Math.abs(e.deltaY)){ e.preventDefault(); track.scrollBy({left:e.deltaX}); } }, {passive:false});
+
+    updateArrows();
+  });
+})();
+</script>
+
+</body>
+</html>

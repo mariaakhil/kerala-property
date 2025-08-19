@@ -1,0 +1,236 @@
+/* --- Property meta styles (responsive) --- */
+.prop-meta h3{ font-size:clamp(1.6rem, 2.4vw + .6rem, 2.25rem); }
+.prop-meta .prop-emi{ color:#0a74c0; }        /* blue link like in shot */
+.prop-meta .prop-emi:hover{ text-decoration:underline; }
+
+/* add a start border only on md+ */
+@media (min-width:768px){
+  .md-border-start{ border-left:1px solid #e7e9ec; }
+}
+
+/* RERA strip */
+.rera-pill{
+  background:#00a870;             /* green */
+  color:#fff;
+  border-radius:.35rem;
+}
+.rera-state{
+  background:#e6f6f0;             /* pale green */
+  color:#10785a;
+  border-radius:.35rem;
+  font-weight:600;
+}
+
+/* tighten small screens */
+@media (max-width:575.98px){
+  .prop-meta .h4{ font-size:1.15rem; }
+}
+
+
+
+
+
+
+/* Media pane: keep vertical media looking good */
+.media-pane{
+  min-height: 420px;                /* desktop height */
+  background:#000;
+}
+@media (max-width: 991.98px){
+  .media-pane{ min-height: 360px; }
+}
+@media (max-width: 575.98px){
+  .media-pane{ min-height: 300px; }
+}
+
+/* Tabs overlay look */
+.media-tabs{
+  position:absolute; top:10px; left:12px; right:12px;
+  display:flex; gap:24px; color:#fff;
+  font-weight:700; z-index:2;
+}
+.media-tab{
+  position:relative; padding:8px 0; opacity:.9;
+}
+.media-tab::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px;
+  height:2px; background:rgba(255,255,255,.55);
+}
+.media-tab.active{ opacity:1; }
+.media-tab.active::after{ background:#ffffff; height:3px; }
+
+/* Spec card + grid */
+.spec-card{
+  background:#fff; border:1px solid #eef1f4; padding:12px; border-radius:16px;
+}
+.spec-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;   /* two columns on md+ */
+  gap:18px 24px;
+}
+@media (max-width: 767.98px){
+  .spec-grid{ grid-template-columns: 1fr; } /* stack on mobile */
+}
+
+/* Each spec item */
+.spec-item{
+  display:flex; gap:12px; padding:10px 6px;
+  border-top:1px solid #eef1f4;
+}
+.spec-item:nth-child(-n+2){ border-top:0; } /* remove top border on first row */
+
+.spec-icon{
+  flex:0 0 34px; height:34px; width:34px; border-radius:8px;
+  display:grid; place-items:center;
+  background:#eef9f9; color:#127782;
+}
+.spec-label{
+  font-size:.85rem; color:#8a949e; font-weight:600; margin-bottom:2px;
+}
+.spec-value{ color:#111; }
+.spec-link{ color:#0a74c0; text-decoration:none; }
+.spec-link:hover{ text-decoration:underline; }
+
+
+
+
+
+
+
+
+
+
+/* About text clamp + more link */
+.about-desc{ line-height:1.6; }
+.clamp-4{
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.about-desc.expanded{ -webkit-line-clamp:unset; max-height:none; }
+.about-more{ color:#0a74c0; text-decoration:none; font-weight:600; }
+.about-more:hover{ text-decoration:underline; }
+
+/* Divider */
+.soft-divider{ border:0; border-top:1px solid #eceff3; }
+
+/* Amenity grid */
+.amenity-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 18px;
+}
+.amenity{
+  display:flex; align-items:center; gap:10px;
+  color:#0f172a; font-weight:600;
+}
+.amenity .ico{
+  width:36px; height:36px; border-radius:8px;
+  display:grid; place-items:center;
+  background:#eef9f9; color:#127782; font-size:18px;
+}
+.amenity.is-off{ color:#9aa4ad; font-weight:500; }
+.amenity.is-off .ico{ background:#f3f4f6; color:#9aa4ad; filter:grayscale(1); }
+
+/* Tighten on phones */
+@media (max-width:575.98px){
+  .amenity-grid{ grid-template-columns: repeat(2, 1fr); gap:12px 14px; }
+  .amenity{ font-size:.95rem; }
+  .amenity .ico{ width:32px; height:32px; font-size:16px; }
+}
+
+
+
+/* subtle rule like the mock */
+.soft-divider{ border:0; border-top:1px solid #eceff3; }
+
+/* Responsive grid of features */
+.prop-features .feature-list{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px 24px;               /* row / column gap */
+}
+.prop-features .feature{
+  display:flex; align-items:center; gap:10px;
+  color:#6c757d; font-weight:600;
+  min-height:40px;
+}
+
+/* Icon bubble (feel free to swap to <img>) */
+.prop-features .fi{
+  width:32px; height:32px; border-radius:6px;
+  display:grid; place-items:center;
+  background:#eef9f9; color:#127782;   /* your teal */
+  font-size:16px;
+}
+
+/* Tablet: a bit tighter */
+@media (max-width: 991.98px){
+  .prop-features .feature-list{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px 18px;
+  }
+}
+
+/* Phones: two columns, comfortable touch targets */
+@media (max-width: 575.98px){
+  .prop-features .feature-list{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 14px;
+  }
+  .prop-features .fi{ width:28px; height:28px; font-size:14px; }
+  .prop-features .feature{ font-size:.95rem; }
+}
+
+
+
+/* card container */
+.nearby-card{
+  border:1px solid #cfe7ff; background:#f7fbff;
+  border-radius:16px; padding:12px 14px;
+}
+
+/* header */
+.nearby-hero{
+  width:36px; height:36px; border-radius:10px;
+  display:grid; place-items:center;
+  background:#e8f3ff; color:#127782;
+}
+.nearby-view{ color:#127782; font-weight:600; text-decoration:none; }
+.nearby-view:hover{ text-decoration:underline; }
+
+/* slider */
+.nearby-slider{ position:relative; }
+.pills-mask{ overflow:hidden; }
+.pills-track{
+  display:flex; gap:10px; align-items:center;
+  overflow-x:auto; scroll-behavior:smooth; padding:6px 44px;   /* space for arrows */
+  scrollbar-width:none;
+}
+.pills-track::-webkit-scrollbar{ display:none; }
+
+/* chips */
+.nb-pill{
+  display:inline-flex; align-items:center; gap:.5rem;
+  white-space:nowrap; padding:.55rem .8rem;
+  background:#fff; color:#2b3441; text-decoration:none;
+  border:1px solid #d9e8ff; border-radius:10px; font-weight:600;
+}
+.nb-pill i{ color:#127782; }
+
+/* arrows */
+.nearby-nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:36px; height:36px; border-radius:50%; border:0;
+  background:#127782; color:#fff; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 24px rgba(13,110,253,.35); z-index:2;
+}
+.nearby-nav.left{ left:-6px; }
+.nearby-nav.right{ right:-6px; }
+.nearby-nav.disabled{ opacity:.35; pointer-events:none; }
+
+/* mobile tweaks */
+@media (max-width:575.98px){
+  .nearby-card{ padding:10px; }
+  .nearby-nav{ width:32px; height:32px; }
+  .pills-track{ padding:6px 36px; }
+}

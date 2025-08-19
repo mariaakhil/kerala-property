@@ -15,6 +15,17 @@
   .brand-title{ font-size:1rem; max-width:70vw; }
   .brand-logo{ height:28px; }
 }
+/* keep btn-link from underlining on hover/focus for this element */
+.btn-link.text-decoration-none:hover,
+.btn-link.text-decoration-none:focus {
+  text-decoration: none !important;
+}
+.brand-logo{ height:42px; }                /* default */
+@media (min-width: 992px){
+  .brand-logo{ height:64px; }
+}
+
+
 
 /* === Hero base === */
 .hero-spot{ position:relative; min-height:560px; background:#011919; overflow:hidden; }
