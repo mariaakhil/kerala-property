@@ -109,3 +109,92 @@
     overflow: visible;
   }
 }
+
+
+/* === Offcanvas: layout & sizing === */
+#filtersOffcanvas{
+  width: min(92vw, 420px);              /* comfy width on phones/tablets */
+}
+@media (min-width: 576px){
+  #filtersOffcanvas{ width: 420px; }
+}
+
+/* Sticky header inside the drawer */
+#filtersOffcanvas .offcanvas-header{
+  position: sticky; top: 0; z-index: 2;
+  background:#fff; border-bottom:1px solid #eef1f4;
+}
+
+/* Body spacing and subtle separators */
+#filtersOffcanvas .offcanvas-body{
+  padding-top: .75rem; padding-bottom: 1rem;
+}
+#filtersOffcanvas hr{
+  margin: .5rem 0 1rem; border-color:#eef1f4;
+}
+
+/* === Toggles (the iOS-style switch you already use) === */
+#filtersOffcanvas .switch{ transform: scale(.92); }  /* slightly smaller in drawer */
+#filtersOffcanvas .slider{ background:#e9eef3; }
+#filtersOffcanvas .switch input:checked + .slider{ background:#127782; }
+
+/* === Accordion styling (mobile-friendly) === */
+#filtersOffcanvas .accordion-item{
+  border-bottom:1px solid #eef1f4;
+}
+#filtersOffcanvas .accordion-button{
+  padding:.65rem 0;
+  font-weight:600;
+  color:#0f172a;
+  background:#fff;
+  box-shadow:none;
+}
+#filtersOffcanvas .accordion-button:not(.collapsed){
+  color:#127782;
+  background:#f7fbfb;                   /* soft teal wash */
+}
+#filtersOffcanvas .accordion-button:focus{
+  box-shadow: none;                      /* remove blue glow */
+}
+#filtersOffcanvas .accordion-button::after{
+  /* keep Bootstrap chevron but make it subtler */
+  filter: saturate(0) opacity(.6);
+}
+#filtersOffcanvas .accordion-body{
+  padding:.5rem 0 1rem;
+}
+
+/* === Checkboxes & quick options === */
+#filtersOffcanvas .form-check{
+  margin:.35rem 0;
+}
+#filtersOffcanvas .form-check-input{
+  width:1.05rem; height:1.05rem;
+  border-color:#cfd6da;
+  cursor:pointer;
+}
+#filtersOffcanvas .form-check-input:checked{
+  background-color:#127782;
+  border-color:#127782;
+}
+#filtersOffcanvas .btn.btn-sm.btn-outline-secondary{
+  border-color:#d9e1e5; color:#0f172a; font-weight:600;
+  border-radius:.6rem; padding:.35rem .6rem;
+}
+#filtersOffcanvas .btn.btn-sm.btn-outline-secondary:hover{
+  background:#eef5f6; border-color:#cfe4e6;
+}
+
+/* === Apply button pinned at bottom of the drawer === */
+#filtersOffcanvas .offcanvas-body > .btn-teal:last-child{
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  margin-top: .75rem;
+  box-shadow: 0 -6px 16px rgba(0,0,0,.06);
+  border-radius:.65rem;
+}
+
+/* Your theme button if not defined */
+.btn-teal{ background:#127782; color:#fff; border:0; }
+.btn-teal:hover{ background:#0f6a72; color:#fff; }
