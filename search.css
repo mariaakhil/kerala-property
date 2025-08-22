@@ -1,0 +1,111 @@
+/* Toggle switch (iOS style) */
+.switch{ position:relative; display:inline-block; width:40px; height:22px; }
+.switch input{ display:none; }
+.slider{
+  position:absolute; inset:0; background:#e9eef3; border-radius:999px;
+  transition:.2s;
+}
+.slider:before{
+  content:""; position:absolute; height:18px; width:18px; left:2px; top:2px;
+  background:white; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,.2); transition:.2s;
+}
+.switch input:checked + .slider{ background:#127782; }
+.switch input:checked + .slider:before{ transform:translateX(18px); }
+
+/* Chips scroller */
+.chip-scroller{
+  display:flex; gap:.5rem; overflow:auto; -webkit-overflow-scrolling:touch;
+  padding-bottom:.25rem;
+}
+.chip{
+  border:1px solid #dfe6ea; background:#fff; border-radius:999px;
+  padding:.35rem .65rem; font-weight:600; white-space:nowrap;
+}
+.chip.active{ border-color:#127782; color:#127782; }
+
+/* Result card tweaks */
+.result-card{ border:1px solid #e9edf0; border-radius:14px; }
+.spec-pill{ background:#f3f6f9; border:1px solid #e6eaee; border-radius:999px; padding:.15rem .5rem; }
+.btn-teal{ background:#127782; border:0; }
+.btn-teal:hover{ background:#0f6a72; }
+
+/* Keep the left filter nicely boxed */
+.filters .accordion-button{ padding:.65rem 0; }
+
+/* Media ratio on small screens */
+@media (max-width: 767.98px){
+  .result-media{ border-bottom-left-radius:0 !important; border-bottom-right-radius:0 !important; }
+}
+
+
+/* Navbar height offset (adjust to your header height) */
+:root{ --nav-offset: 80px; }  /* try 72–96px depending on your navbar */
+
+/* Sticky left sidebar on desktop */
+@media (min-width: 992px){
+  .filters-pin{
+    position: sticky;           /* sticks within its column */
+    top: var(--nav-offset);     /* clears your navbar */
+    max-height: calc(100vh - var(--nav-offset) - 12px);
+    overflow: auto;             /* sidebar itself scrolls if taller */
+    border-radius: 12px;
+  }
+
+  /* Optional: slimmer scrollbar inside the panel */
+  .filters-pin::-webkit-scrollbar{ width: 8px; }
+  .filters-pin::-webkit-scrollbar-thumb{
+    background: #dfe6ea; border-radius: 999px;
+  }
+}
+
+/* On mobile, behave normally */
+@media (max-width: 991.98px){
+  .filters-pin{
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+
+/* base chip */
+.chip{
+  border:1px solid #dfe6ea;
+  background:#fff;
+  color:#0f172a;
+  padding:.35rem .65rem;
+  border-radius:999px;
+  font-weight:600;
+  white-space:nowrap;
+  transition:background .15s, color .15s, border-color .15s;
+}
+
+/* on click/active -> white text */
+.chip.active{
+  background:#127782;
+  border-color:#127782;
+  color:#fff !important;
+}
+.chip.active i{ color:#fff; }             /* icons inherit white too */
+.chip:focus-visible{ box-shadow:0 0 0 .2rem rgba(18,119,130,.25); }
+
+
+
+:root{ --nav-offset: 80px; } /* adjust if your navbar is taller/shorter */
+
+@media (min-width: 992px){
+  .filters-pin{
+    position: sticky;
+    top: var(--nav-offset);
+    max-height: calc(100vh - var(--nav-offset) - 12px);
+    overflow: auto;
+    border-radius: 12px;
+  }
+}
+@media (max-width: 991.98px){
+  .filters-pin{
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}

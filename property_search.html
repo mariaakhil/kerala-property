@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Property Detail Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+      <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap / Icons (only include once in your base layout) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+<!-- TOP BAR -->
+<div class="topbar py-1 d-none d-md-block">
+  <div class="container d-flex align-items-center gap-3">
+    <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
+    <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
+    <!-- UAE flag on far right -->
+    <span class="ms-auto d-inline-flex align-items-center gap-2">
+      <img src="f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" alt="UAE" class="flag">
+      <small class="d-none d-lg-inline">UAE</small>
+    </span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container-fluid align-items-center px-0">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
+      <img src="KPO.png" alt="Kerala Property Online" class="brand-logo">
+    </a>
+
+    <!-- LEFT NAV (collapse on mobile, visible on lg) -->
+    <div class="collapse navbar-collapse order-lg-1 ms-3" id="mainNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" href="/">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="propDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Properties</a>
+          <ul class="dropdown-menu" aria-labelledby="propDD">
+            <li><a class="dropdown-item" href="/properties/rent">For Rent</a></li>
+            <li><a class="dropdown-item" href="/properties/buy">For Sale</a></li>
+            <li><a class="dropdown-item" href="/properties/commercial">Commercial</a></li>
+            <li><a class="dropdown-item" href="/properties/agents">Agents</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="blogDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Blogs</a>
+          <ul class="dropdown-menu" aria-labelledby="blogDD">
+            <li><a class="dropdown-item" href="/blog">All Posts</a></li>
+            <li><a class="dropdown-item" href="/blog/tips">Tips & Guides</a></li>
+            <li><a class="dropdown-item" href="/blog/news">Market News</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Mobile-only items inside collapse -->
+      <form class="d-lg-none px-2 pt-2" role="search" action="/search" method="get">
+        <div class="input-group">
+          <select name="intent" class="form-select" style="max-width:110px">
+            <option value="buy" selected>Buy</option>
+            <option value="rent">Rent</option>
+            <option value="pg">PG</option>
+          </select>
+          <input name="q" type="search" class="form-control" placeholder="Locality / Project / Society" required>
+          <button class="btn btn-brand text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
+
+      <ul class="navbar-nav d-lg-none">
+        <li class="nav-item"><a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a></li>
+        <li class="nav-item my-2"><a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a></li>
+      </ul>
+    </div>
+
+    <!-- CENTER SEARCH (desktop) -->
+    <form class="nav-search d-none d-lg-flex order-lg-2 mx-lg-3 flex-grow-1"
+          role="search" action="/search" method="get">
+      <input type="hidden" name="intent" id="navIntent" value="buy">
+      <div class="nav-search-group">
+        <div class="dropdown">
+          <button class="btn mode-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Buy</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="#" data-value="buy">Buy</a></li>
+            <li><a class="dropdown-item" href="#" data-value="rent">Rent</a></li>
+            <li><a class="dropdown-item" href="#" data-value="pg">PG</a></li>
+          </ul>
+        </div>
+        <input class="form-control q-input" name="q" type="search"
+               placeholder="Enter Locality / Project / Society / Landmark" required>
+        <button class="icon-btn" type="button" title="Use my location"><i class="fa-solid fa-location-crosshairs"></i></button>
+        <button class="icon-btn" type="button" title="Voice search"><i class="fa-solid fa-microphone"></i></button>
+        <button class="search-btn" type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </form>
+
+    <!-- RIGHT SIDE -->
+    <div class="d-flex align-items-center ms-auto order-lg-3">
+      <a href="" class="btn btn-link text-decoration-none d-none d-lg-inline-flex align-items-center me-2 text-dark">
+        <i class="fa-regular fa-user me-2"></i> Login / Register
+      </a>
+      <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
+        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+      </a>
+      <button class="navbar-toggler ms-2 border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<section class="results-layout py-3">
+  <div class="container">
+
+    <!-- Mobile toolbar -->
+    <div class="d-lg-none d-flex justify-content-between align-items-center mb-3">
+      <button class="btn btn-outline-secondary" data-bs-toggle="offcanvas" data-bs-target="#filtersOffcanvas">
+        <i class="bi-sliders"></i> Filters
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+          Sort by
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item active" href="#">Relevance</a></li>
+          <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+          <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+          <li><a class="dropdown-item" href="#">Newest</a></li>
+        </ul>
+      </div>
+    </div>
+
+<div class="row g-3">
+      <!-- ============== LEFT: FILTERS (desktop) ============== -->
+      <aside class="col-12 col-lg-3 mb-3 mb-lg-0">
+        <div class="filters card shadow-sm filters-pin" style="top:90px;">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <strong>Hide already seen</strong>
+              <label class="switch">
+                <input type="checkbox"><span class="slider"></span>
+              </label>
+            </div>
+            <hr class="my-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div>
+                <strong>Verified properties</strong>
+                <div class="small text-muted">
+                  <span class="badge bg-success-subtle text-success fw-semibold">Verified</span>
+                  by verification team
+                </div>
+              </div>
+              <label class="switch">
+                <input type="checkbox"><span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Accordions -->
+            <div class="accordion accordion-flush mt-3" id="fltAcc">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltBudget">
+                    Budget
+                  </button>
+                </h2>
+                <div id="fltBudget" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body">
+                    <div class="row g-2">
+                      <div class="col"><input class="form-control form-control-sm" placeholder="Min"></div>
+                      <div class="col"><input class="form-control form-control-sm" placeholder="Max"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltType">
+                    Type of property
+                  </button>
+                </h2>
+                <div id="fltType" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body small">
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="flat">
+                      <label class="form-check-label" for="flat">Flat / Apartment</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="house">
+                      <label class="form-check-label" for="house">Independent House</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="villa">
+                      <label class="form-check-label" for="villa">Villa</label></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltBeds">
+                    No. of Bedrooms
+                  </button>
+                </h2>
+                <div id="fltBeds" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body">
+                    <div class="d-flex flex-wrap gap-2">
+                      <label class="btn btn-sm btn-outline-secondary"><input class="btn-check" type="checkbox"> 1 BHK</label>
+                      <label class="btn btn-sm btn-outline-secondary"><input class="btn-check" type="checkbox"> 2 BHK</label>
+                      <label class="btn btn-sm btn-outline-secondary"><input class="btn-check" type="checkbox"> 3 BHK</label>
+                      <label class="btn btn-sm btn-outline-secondary"><input class="btn-check" type="checkbox"> 4+ BHK</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+<div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltStatus">
+                    Construction Status
+                  </button>
+                </h2>
+                <div id="fltStatus" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body small">
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="ready">
+                      <label class="form-check-label" for="ready">Ready To Move</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="uc">
+                      <label class="form-check-label" for="uc">Under Construction</label></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltStatus">
+                    Construction Status
+                  </button>
+                </h2>
+                <div id="fltStatus" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body small">
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="ready">
+                      <label class="form-check-label" for="ready">Ready To Move</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="uc">
+                      <label class="form-check-label" for="uc">Under Construction</label></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltStatus">
+                    Construction Status
+                  </button>
+                </h2>
+                <div id="fltStatus" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body small">
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="ready">
+                      <label class="form-check-label" for="ready">Ready To Move</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="uc">
+                      <label class="form-check-label" for="uc">Under Construction</label></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltStatus">
+                    Construction Status
+                  </button>
+                </h2>
+                <div id="fltStatus" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body small">
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="ready">
+                      <label class="form-check-label" for="ready">Ready To Move</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="uc">
+                      <label class="form-check-label" for="uc">Under Construction</label></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#fltStatus">
+                    Construction Status
+                  </button>
+                </h2>
+                <div id="fltStatus" class="accordion-collapse collapse" data-bs-parent="#fltAcc">
+                  <div class="accordion-body small">
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="ready">
+                      <label class="form-check-label" for="ready">Ready To Move</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="uc">
+                      <label class="form-check-label" for="uc">Under Construction</label></div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <button class="btn btn-teal w-100 mt-3">Apply Filters</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ============== RIGHT: RESULTS ============== -->
+      <main class="col-lg-9">
+        <!-- Result header -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <h5 class="m-0">76,117 results | <span class="text-muted">Property in Mumbai</span></h5>
+          <div class="dropdown d-none d-lg-block">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+              Sort by: Relevance
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item active" href="#">Relevance</a></li>
+              <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+              <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+              <li><a class="dropdown-item" href="#">Newest</a></li>
+            </ul>
+          </div>
+        </div>
+
+     <div class="chip-scroller mb-3" id="resultChips">
+  <button class="chip" data-filter="new">New Launch</button>
+  <button class="chip" data-filter="owner">Owner</button>
+  <button class="chip" data-filter="verified">Verified</button>
+  <button class="chip" data-filter="uc">Under Construction</button>
+  <button class="chip" data-filter="ready">Ready To Move</button>
+  <button class="chip" data-filter="photos">With Photos</button>
+  <button class="chip" data-filter="metro">Near Metro</button>
+</div>
+
+
+
+        <!-- One sample listing card -->
+<article class="result-card card mb-3" data-tags="new">
+          <div class="row g-0">
+            <!-- image -->
+            <div class="col-12 col-md-4">
+              <div class="ratio ratio-4x3 result-media rounded-start overflow-hidden">
+                <img src="house.png" alt="Property" class="w-100 h-100" style="object-fit:cover">
+              </div>
+            </div>
+
+            <!-- content -->
+            <div class="col-12 col-md-8">
+              <div class="p-3 h-100 d-flex flex-column">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="badge bg-success-subtle text-success fw-semibold">Verified</span>
+                  <span class="badge bg-primary-subtle text-primary fw-semibold">Featured</span>
+                </div>
+
+                <h6 class="mb-1">Gundecha Marigold</h6>
+                <div class="text-muted small mb-2">2 BHK Flat in Thakur Village, Kandivali East</div>
+
+                <div class="row g-3 small mb-2">
+                  <div class="col"><div class=" fw-bold">₹1.8 Cr</div><div class="text-muted">₹22,085 / sqft</div></div>
+                  <div class="col"><div class="fw-semibold">815 sqft</div><div class="text-muted">Super Built-up Area</div></div>
+                  <div class="col"><div class="fw-semibold">2 BHK</div><div class="text-muted">2 Baths</div></div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 small mb-2">
+                  <span class="spec-pill">East Facing</span>
+                  <span class="spec-pill">Swimming Pool Available</span>
+                  <span class="spec-pill">+2</span>
+                </div>
+
+                <p class="text-muted small mb-3 flex-grow-1">
+                  This vastu-compliant 2BHK is for sale in Gundecha Marigold…
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" data-view-number>View Number</button>
+                  <a class="btn btn-teal btn-sm text-white" href="#"><i class="bi-telephone me-1"></i> Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+<article class="result-card card mb-3" data-tags="owner">
+          <div class="row g-0">
+            <!-- image -->
+            <div class="col-12 col-md-4">
+              <div class="ratio ratio-4x3 result-media rounded-start overflow-hidden">
+                <img src="house.png" alt="Property" class="w-100 h-100" style="object-fit:cover">
+              </div>
+            </div>
+
+            <!-- content -->
+            <div class="col-12 col-md-8">
+              <div class="p-3 h-100 d-flex flex-column">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="badge bg-success-subtle text-success fw-semibold">Verified</span>
+                  <span class="badge bg-primary-subtle text-primary fw-semibold">Featured</span>
+                </div>
+
+                <h6 class="mb-1">Gundecha Marigold</h6>
+                <div class="text-muted small mb-2">2 BHK Flat in Thakur Village, Kandivali East</div>
+
+                <div class="row g-3 small mb-2">
+                  <div class="col"><div class=" fw-bold">₹1.8 Cr</div><div class="text-muted">₹22,085 / sqft</div></div>
+                  <div class="col"><div class="fw-semibold">815 sqft</div><div class="text-muted">Super Built-up Area</div></div>
+                  <div class="col"><div class="fw-semibold">2 BHK</div><div class="text-muted">2 Baths</div></div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 small mb-2">
+                  <span class="spec-pill">East Facing</span>
+                  <span class="spec-pill">Swimming Pool Available</span>
+                  <span class="spec-pill">+2</span>
+                </div>
+
+                <p class="text-muted small mb-3 flex-grow-1">
+                  This vastu-compliant 2BHK is for sale in Gundecha Marigold…
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" data-view-number>View Number</button>
+                  <a class="btn btn-teal btn-sm text-white" href="#"><i class="bi-telephone me-1"></i> Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="result-card card mb-3">
+          <div class="row g-0">
+            <!-- image -->
+            <div class="col-12 col-md-4">
+              <div class="ratio ratio-4x3 result-media rounded-start overflow-hidden">
+                <img src="house.png" alt="Property" class="w-100 h-100" style="object-fit:cover">
+              </div>
+            </div>
+
+            <!-- content -->
+            <div class="col-12 col-md-8">
+              <div class="p-3 h-100 d-flex flex-column">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="badge bg-success-subtle text-success fw-semibold">Verified</span>
+                  <span class="badge bg-primary-subtle text-primary fw-semibold">Featured</span>
+                </div>
+
+                <h6 class="mb-1">Gundecha Marigold</h6>
+                <div class="text-muted small mb-2">2 BHK Flat in Thakur Village, Kandivali East</div>
+
+                <div class="row g-3 small mb-2">
+                  <div class="col"><div class=" fw-bold">₹1.8 Cr</div><div class="text-muted">₹22,085 / sqft</div></div>
+                  <div class="col"><div class="fw-semibold">815 sqft</div><div class="text-muted">Super Built-up Area</div></div>
+                  <div class="col"><div class="fw-semibold">2 BHK</div><div class="text-muted">2 Baths</div></div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 small mb-2">
+                  <span class="spec-pill">East Facing</span>
+                  <span class="spec-pill">Swimming Pool Available</span>
+                  <span class="spec-pill">+2</span>
+                </div>
+
+                <p class="text-muted small mb-3 flex-grow-1">
+                  This vastu-compliant 2BHK is for sale in Gundecha Marigold…
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" data-view-number>View Number</button>
+                  <a class="btn btn-teal btn-sm text-white" href="#"><i class="bi-telephone me-1"></i> Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="result-card card mb-3">
+          <div class="row g-0">
+            <!-- image -->
+            <div class="col-12 col-md-4">
+              <div class="ratio ratio-4x3 result-media rounded-start overflow-hidden">
+                <img src="house.png" alt="Property" class="w-100 h-100" style="object-fit:cover">
+              </div>
+            </div>
+
+            <!-- content -->
+            <div class="col-12 col-md-8">
+              <div class="p-3 h-100 d-flex flex-column">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="badge bg-success-subtle text-success fw-semibold">Verified</span>
+                  <span class="badge bg-primary-subtle text-primary fw-semibold">Featured</span>
+                </div>
+
+                <h6 class="mb-1">Gundecha Marigold</h6>
+                <div class="text-muted small mb-2">2 BHK Flat in Thakur Village, Kandivali East</div>
+
+                <div class="row g-3 small mb-2">
+                  <div class="col"><div class=" fw-bold">₹1.8 Cr</div><div class="text-muted">₹22,085 / sqft</div></div>
+                  <div class="col"><div class="fw-semibold">815 sqft</div><div class="text-muted">Super Built-up Area</div></div>
+                  <div class="col"><div class="fw-semibold">2 BHK</div><div class="text-muted">2 Baths</div></div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 small mb-2">
+                  <span class="spec-pill">East Facing</span>
+                  <span class="spec-pill">Swimming Pool Available</span>
+                  <span class="spec-pill">+2</span>
+                </div>
+
+                <p class="text-muted small mb-3 flex-grow-1">
+                  This vastu-compliant 2BHK is for sale in Gundecha Marigold…
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" data-view-number>View Number</button>
+                  <a class="btn btn-teal btn-sm text-white" href="#"><i class="bi-telephone me-1"></i> Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="result-card card mb-3">
+          <div class="row g-0">
+            <!-- image -->
+            <div class="col-12 col-md-4">
+              <div class="ratio ratio-4x3 result-media rounded-start overflow-hidden">
+                <img src="house.png" alt="Property" class="w-100 h-100" style="object-fit:cover">
+              </div>
+            </div>
+
+            <!-- content -->
+            <div class="col-12 col-md-8">
+              <div class="p-3 h-100 d-flex flex-column">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="badge bg-success-subtle text-success fw-semibold">Verified</span>
+                  <span class="badge bg-primary-subtle text-primary fw-semibold">Featured</span>
+                </div>
+
+                <h6 class="mb-1">Gundecha Marigold</h6>
+                <div class="text-muted small mb-2">2 BHK Flat in Thakur Village, Kandivali East</div>
+
+                <div class="row g-3 small mb-2">
+                  <div class="col"><div class=" fw-bold">₹1.8 Cr</div><div class="text-muted">₹22,085 / sqft</div></div>
+                  <div class="col"><div class="fw-semibold">815 sqft</div><div class="text-muted">Super Built-up Area</div></div>
+                  <div class="col"><div class="fw-semibold">2 BHK</div><div class="text-muted">2 Baths</div></div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 small mb-2">
+                  <span class="spec-pill">East Facing</span>
+                  <span class="spec-pill">Swimming Pool Available</span>
+                  <span class="spec-pill">+2</span>
+                </div>
+
+                <p class="text-muted small mb-3 flex-grow-1">
+                  This vastu-compliant 2BHK is for sale in Gundecha Marigold…
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" data-view-number>View Number</button>
+                  <a class="btn btn-teal btn-sm text-white" href="#"><i class="bi-telephone me-1"></i> Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <!-- Duplicate <article class="result-card"> … </article> for more cards -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Offcanvas filters for mobile -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="filtersOffcanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Filters</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- You can copy a leaner version of the filters here -->
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <strong>Hide already seen</strong>
+        <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div><strong>Verified properties</strong></div>
+        <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+      </div>
+      <hr>
+      <!-- simple examples -->
+      <div class="mb-2"><strong class="small d-block mb-1">Budget</strong>
+        <div class="row g-2">
+          <div class="col"><input class="form-control form-control-sm" placeholder="Min"></div>
+          <div class="col"><input class="form-control form-control-sm" placeholder="Max"></div>
+        </div>
+      </div>
+      <div class="mb-2"><strong class="small d-block mb-1">Bedrooms</strong>
+        <div class="d-flex flex-wrap gap-2">
+          <label class="btn btn-sm btn-outline-secondary">1 BHK</label>
+          <label class="btn btn-sm btn-outline-secondary">2 BHK</label>
+          <label class="btn btn-sm btn-outline-secondary">3 BHK</label>
+        </div>
+      </div>
+      <button class="btn btn-teal w-100 mt-2" data-bs-dismiss="offcanvas">Apply</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer class="site-footer pt-5">
+  <div class="container">
+
+    <div class="row g-4 g-lg-5">
+      <!-- Brand + address -->
+      <div class="col-12 col-lg-4">
+        <div class="d-flex align-items-center mb-3">
+          <img src="KPO.png" alt="Housefind" style="height:4
+          2px; width: 300px;" class="me-2">
+          <strong class="fs-5"></strong>
+        </div>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Address</li>
+          <li class="fw-semibold text-body">789 Queensberry Street, North<br>Melbourne VIC 3051, Australia.</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Total Free Customer Care</li>
+          <li class="fw-semibold text-body">+(088) 123 456 789</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted">
+          <li class="text-uppercase text-body-secondary mb-1">Live Support?</li>
+          <li class="fw-semibold"><a href="mailto:hi@homez.com" class="link-body-emphasis">hi@homez.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Popular search + Discovery -->
+      <div class="col-6 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Popular Search</div>
+          <ul class="foot-links">
+            <li><a href="#">Apartment for Sale</a></li>
+            <li><a href="#">Apartment for Rent</a></li>
+            <li><a href="#">Offices for Sale</a></li>
+            <li><a href="#">Offices for Rent</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-block mt-3">
+          <div class="foot-title">Discovery</div>
+          <ul class="foot-links">
+            <li><a href="#">Chicago</a></li>
+            <li><a href="#">Los Angeles</a></li>
+            <li><a href="#">New Jersey</a></li>
+            <li><a href="#">New York</a></li>
+            <li><a href="#">California</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="col-6 col-lg-2">
+        <div class="footer-block">
+          <div class="foot-title">Quick Links</div>
+          <ul class="foot-links">
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Pricing Plans</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Newsletter + apps -->
+      <div class="col-12 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Keep Yourself Up to Date</div>
+
+          <form class="newsletter mb-3" action="/subscribe" method="post">
+            <div class="input-group input-group-sm">
+              <input type="email" class="form-control rounded-start-pill" placeholder="Your email" required>
+              <button class="btn btn-teal rounded-end-pill px-3" type="submit" aria-label="Subscribe">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+
+          
+      </div>
+    </div>
+
+    <hr class="footer-rule mt-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center small text-muted py-3">
+      <span>© Homez — All rights reserved</span>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  document.querySelectorAll('.nearby-slider').forEach(slider=>{
+    const track = slider.querySelector('.pills-track');
+    const btnL  = slider.querySelector('.nearby-nav.left');
+    const btnR  = slider.querySelector('.nearby-nav.right');
+
+    const step = () => Math.max(220, Math.floor(track.clientWidth * 0.8));
+
+    function updateArrows(){
+      const end = track.scrollWidth - track.clientWidth - 2;
+      btnL.classList.toggle('disabled', track.scrollLeft <= 0);
+      btnR.classList.toggle('disabled', track.scrollLeft >= end);
+    }
+    btnL.addEventListener('click', ()=> track.scrollBy({left: -step(), behavior:'smooth'}));
+    btnR.addEventListener('click', ()=> track.scrollBy({left:  step(), behavior:'smooth'}));
+    track.addEventListener('scroll', updateArrows);
+
+    // drag to scroll
+    let down=false, startX=0, startLeft=0;
+    track.addEventListener('pointerdown', e=>{ down=true; startX=e.clientX; startLeft=track.scrollLeft; track.setPointerCapture(e.pointerId); });
+    track.addEventListener('pointermove',  e=>{ if(!down) return; track.scrollLeft = startLeft - (e.clientX - startX); });
+    ['pointerup','pointercancel','mouseleave'].forEach(ev=> track.addEventListener(ev, ()=> down=false));
+
+    // wheel horizontal support
+    track.addEventListener('wheel', (e)=>{ if(Math.abs(e.deltaX) > Math.abs(e.deltaY)){ e.preventDefault(); track.scrollBy({left:e.deltaX}); } }, {passive:false});
+
+    updateArrows();
+  });
+})();
+
+
+
+
+(() => {
+  const wrapper   = document.querySelector('.nav-search');
+  if (!wrapper) return;
+  const menuItems = wrapper.querySelectorAll('.dropdown-menu .dropdown-item');
+  const btn       = wrapper.querySelector('.mode-btn');
+  const hidden    = document.getElementById('navIntent');
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      menuItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      btn.textContent = item.textContent.trim();
+      hidden.value = item.dataset.value || 'buy';
+    });
+  });
+})();
+</script>
+<script>
+// fake "View Number" interaction
+document.querySelectorAll('[data-view-number]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    btn.classList.remove('btn-outline-secondary');
+    btn.classList.add('btn-success');
+    btn.textContent = '98765 43210';
+  });
+});
+</script>
+<script>
+(function () {
+  const chipsWrap = document.getElementById('resultChips');
+  if (!chipsWrap) return;
+
+  const chips = [...chipsWrap.querySelectorAll('.chip')];
+  const cards = [...document.querySelectorAll('.result-card')];
+
+  function applyFilter(token) {
+    cards.forEach(card => {
+      const tags = (card.dataset.tags || '')
+                    .split(',')
+                    .map(s => s.trim().toLowerCase())
+                    .filter(Boolean);
+      const show = !token || tags.includes(token);
+      card.classList.toggle('d-none', !show);
+    });
+  }
+
+  chipsWrap.addEventListener('click', e => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+
+    const isActive = btn.classList.contains('active');
+    chips.forEach(c => c.classList.remove('active'));
+
+    // if clicking an active chip -> clear filter (show all)
+    if (isActive) {
+      applyFilter('');
+      return;
+    }
+
+    btn.classList.add('active');
+    applyFilter((btn.dataset.filter || '').toLowerCase());
+  });
+
+  // optional: start with no filter (show all)
+  applyFilter('');
+})();
+</script>
+
+</body>
+</html>
