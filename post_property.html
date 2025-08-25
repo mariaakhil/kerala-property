@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Property</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap / Icons (only include once in your base layout) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+</head>
+<style>
+
+:root{ --brand:#127782; }
+
+.add-prop-hero{ background:#f6fbff; }
+.text-brand{ color:var(--brand); }
+
+.lead-feats li{
+  margin:.45rem 0;
+  font-weight:500;
+}
+.lead-feats i{
+  color:#16a34a;
+  margin-right:.6rem;
+}
+
+.post-illus{ max-width:560px; }
+
+/* Card + segmented controls */
+.post-card{ border-radius:14px; }
+.seg .btn{
+  background:#f7fafc;
+  border:1px solid #e6eaef;
+  color:#0f172a;
+  padding:.45rem .85rem;
+  border-radius:.6rem;
+  margin-right:.4rem;
+}
+.seg .btn.active{ background:var(--brand); color:#fff; border-color:var(--brand); }
+
+/* Type chips */
+.pill-chip{
+  border:1px solid #dfe6ea;
+  background:#fff;
+  color:#0f172a;
+  font-weight:600;
+  border-radius:999px;
+  padding:.45rem .85rem;
+}
+.pill-chip.active,
+.pill-chip:focus{ background:var(--brand); color:#fff; border-color:var(--brand); }
+
+/* Mobile tweaks */
+@media (max-width: 991.98px){
+  .post-illus{ max-width:100%; }
+  .seg .btn{ margin-bottom:.4rem; }
+}
+
+
+
+
+
+</style>
+
+
+<body>
+<div class="topbar py-1 d-none d-md-block">
+  <div class="container d-flex align-items-center gap-3">
+    <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
+    
+    <!-- UAE flag on far right -->
+    <span class="ms-auto d-inline-flex align-items-center gap-2">
+     <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
+    </span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container-fluid align-items-center px-0">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
+      <img src="KPO.png" alt="Kerala Property Online" class="brand-logo">
+    </a>
+
+    <!-- LEFT NAV (collapse on mobile, visible on lg) -->
+    <div class="collapse navbar-collapse order-lg-1 ms-3" id="mainNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" href="/">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="propDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Properties</a>
+          <ul class="dropdown-menu" aria-labelledby="propDD">
+            <li><a class="dropdown-item" href="/properties/rent">For Rent</a></li>
+            <li><a class="dropdown-item" href="/properties/buy">For Sale</a></li>
+            <li><a class="dropdown-item" href="/properties/commercial">Commercial</a></li>
+            <li><a class="dropdown-item" href="/properties/agents">Agents</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="blogDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Blogs</a>
+          <ul class="dropdown-menu" aria-labelledby="blogDD">
+            <li><a class="dropdown-item" href="/blog">All Posts</a></li>
+            <li><a class="dropdown-item" href="/blog/tips">Tips & Guides</a></li>
+            <li><a class="dropdown-item" href="/blog/news">Market News</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Mobile-only items inside collapse -->
+      <form class="d-lg-none px-2 pt-2" role="search" action="/search" method="get">
+        <div class="input-group">
+          <select name="intent" class="form-select" style="max-width:110px">
+            <option value="buy" selected>Buy</option>
+            <option value="rent">Rent</option>
+            <option value="pg">PG</option>
+          </select>
+          <input name="q" type="search" class="form-control" placeholder="Locality / Project / Society" required>
+          <button class="btn btn-brand text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
+
+      <ul class="navbar-nav d-lg-none">
+        <li class="nav-item"><a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a></li>
+        <li class="nav-item my-2"><a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a></li>
+      </ul>
+    </div>
+
+    <!-- CENTER SEARCH (desktop) -->
+    <form class="nav-search d-none d-lg-flex order-lg-2 mx-lg-3 flex-grow-1"
+          role="search" action="/search" method="get">
+      <input type="hidden" name="intent" id="navIntent" value="buy">
+      <div class="nav-search-group">
+        <div class="dropdown">
+          <button class="btn mode-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Buy</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="#" data-value="buy">Buy</a></li>
+            <li><a class="dropdown-item" href="#" data-value="rent">Rent</a></li>
+           
+          </ul>
+        </div>
+        <input class="form-control q-input" name="q" type="search"
+               placeholder="Enter Locality / Project / Society / Landmark" required>
+        <button class="icon-btn" type="button" title="Use my location"><i class="fa-solid fa-location-crosshairs"></i></button>
+        <button class="icon-btn" type="button" title="Voice search"><i class="fa-solid fa-microphone"></i></button>
+        <button class="search-btn" type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </form>
+
+    <!-- RIGHT SIDE -->
+    <div class="d-flex align-items-center ms-auto order-lg-3">
+      <a href="" class="btn btn-link text-decoration-none d-none d-lg-inline-flex align-items-center me-2 text-dark">
+        <i class="fa-regular fa-user me-2"></i> Login / Register
+      </a>
+      <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
+        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+      </a>
+    <button class="navbar-toggler ms-2 border-0" type="button"
+        data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- ADD PROPERTY — HERO -->
+<section class="add-prop-hero py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <!-- LEFT: copy + illustration -->
+      <div class="col-lg-7 order-2 order-lg-1">
+        <h2 class="display-6 fw-bold mb-2">
+          Sell or Rent Property <span class="text-brand">online faster</span>
+        </h2>
+        <p class="text-muted mb-3">with Kerala Property Online</p>
+
+        <ul class="list-unstyled lead-feats mb-4">
+          <li><i class="fa-solid fa-check"></i> Advertise for FREE</li>
+          <li><i class="fa-solid fa-check"></i> Get unlimited enquiries</li>
+          <li><i class="fa-solid fa-check"></i> Get shortlisted buyers and tenants</li>
+          <li><i class="fa-solid fa-check"></i> Assistance in co-ordinating site visits</li>
+        </ul>
+
+        <img src="/images/post-illus.png" alt="Post Property Illustration"
+             class="post-illus img-fluid mt-2">
+      </div>
+
+      <!-- RIGHT: starter form -->
+      <div class="col-lg-5 order-1 order-lg-2">
+        <form class="card post-card shadow-lg border-0">
+          <div class="card-body p-4">
+            <h5 class="fw-semibold mb-1">Start posting your property, it’s free</h5>
+            <small class="text-muted">Add Basic Details</small>
+
+            <!-- Intent -->
+            <div class="mt-3">
+              <div class="mb-2 small text-muted">You're looking to …</div>
+              <input type="hidden" name="intent" id="intentInput" value="sell">
+              <div class="btn-group seg" data-hidden="#intentInput" role="group">
+                <input class="btn-check" type="radio" name="intent_r" id="i_sell" checked>
+                <label class="btn btn-sm" for="i_sell" data-value="sell">Sell</label>
+
+                <input class="btn-check" type="radio" name="intent_r" id="i_rent">
+                <label class="btn btn-sm" for="i_rent" data-value="rent">Rent</label>
+
+               
+              </div>
+            </div>
+
+            <!-- Segment -->
+            <div class="mt-4">
+              <div class="mb-2 small text-muted">And it’s a …</div>
+              <input type="hidden" name="segment" id="segmentInput" value="residential">
+              <div class="btn-group seg" data-hidden="#segmentInput" role="group">
+                <input class="btn-check" type="radio" name="seg_r" id="s_res" checked>
+                <label class="btn btn-sm" for="s_res" data-value="residential">Residential</label>
+
+                <input class="btn-check" type="radio" name="seg_r" id="s_com">
+                <label class="btn btn-sm" for="s_com" data-value="commercial">Commercial</label>
+              </div>
+            </div>
+
+            <!-- Property type chips -->
+            <div class="mt-3">
+              <div class="mb-2 small text-muted">Property Type</div>
+              <input type="hidden" name="ptype" id="ptypeInput" value="plot_land">
+              <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="pill-chip" data-value="flat">Flat/Apartment</button>
+                <button type="button" class="pill-chip" data-value="villa">Independent House / Villa</button>
+                <button type="button" class="pill-chip" data-value="builderfloor">Independent / Builder Floor</button>
+                <button type="button" class="pill-chip active" data-value="plot_land">Plot / Land</button>
+                <button type="button" class="pill-chip" data-value="studio">1 RK / Studio Apartment</button>
+                <button type="button" class="pill-chip" data-value="serviced">Serviced Apartment</button>
+                <button type="button" class="pill-chip" data-value="farmhouse">Farmhouse</button>
+                <button type="button" class="pill-chip" data-value="other">Other</button>
+              </div>
+            </div>
+
+            <button class="btn btn-brand w-100 mt-4" type="submit">Start now</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // segmented groups (Sell / Rent / PG, etc.)
+  document.querySelectorAll('.seg').forEach(group => {
+    const hiddenSel = group.dataset.hidden;
+    const hidden = hiddenSel ? document.querySelector(hiddenSel) : null;
+    group.querySelectorAll('label.btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('label.btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (hidden) hidden.value = btn.dataset.value || '';
+      });
+    });
+    // mark default checked as active
+    const checked = group.querySelector('input.btn-check:checked + label');
+    if (checked) checked.classList.add('active');
+  });
+
+  // property type chips (single select)
+  const chips = document.querySelectorAll('.pill-chip');
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const ptype = document.getElementById('ptypeInput');
+    if (ptype) ptype.value = chip.dataset.value || '';
+  }));
+</script>

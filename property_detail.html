@@ -26,61 +26,35 @@
 <div class="topbar py-1 d-none d-md-block">
   <div class="container d-flex align-items-center gap-3">
     <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
-    <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
-    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
-
+    
     <!-- UAE flag on far right -->
     <span class="ms-auto d-inline-flex align-items-center gap-2">
-      <img src="f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" alt="UAE" class="flag">
-      <small class="d-none d-lg-inline">UAE</small>
+     <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
     </span>
   </div>
 </div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <div class="container">
+  <div class="container-fluid align-items-center px-0">
+
     <!-- Brand -->
-   <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
-  <img src="KPO.png" alt="Kerala Property Online" class="brand-logo">
-</a>
+    <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
+      <img src="KPO.png" alt="Kerala Property Online" class="brand-logo">
+    </a>
 
-
-
-    <!-- Right side (desktop) + Toggler -->
-    <div class="d-flex align-items-center ms-auto order-lg-2">
-      <a href="" class="btn btn-link text-decoration-none d-none d-lg-inline-flex align-items-center me-2 text-dark">
-  <i class="fa-regular fa-user me-2"></i> Login / Register
-</a>
-
-
-      <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
-        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
-      </a>
-
-     
-
-      <!-- Hamburger (make sure navbar-light is on the <nav> so the icon shows) -->
-      <button class="navbar-toggler ms-2 border-0" type="button"
-              data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-
-    <!-- Collapsible menu -->
-    <div class="collapse navbar-collapse order-lg-1" id="mainNav">
-      <ul class="navbar-nav ms-lg-4 me-auto">
+    <!-- LEFT NAV (collapse on mobile, visible on lg) -->
+    <div class="collapse navbar-collapse order-lg-1 ms-3" id="mainNav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active text-dark" aria-current="page" href="/">Home</a>
+          <a class="nav-link active text-dark" href="/">Home</a>
         </li>
 
-        <!-- Properties dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark" href="#" id="propDD" role="button"
-             data-bs-toggle="dropdown" aria-expanded="false">
-            Properties
-          </a>
+             data-bs-toggle="dropdown" aria-expanded="false">Properties</a>
           <ul class="dropdown-menu" aria-labelledby="propDD">
             <li><a class="dropdown-item" href="/properties/rent">For Rent</a></li>
             <li><a class="dropdown-item" href="/properties/buy">For Sale</a></li>
@@ -89,12 +63,9 @@
           </ul>
         </li>
 
-        <!-- Blogs dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark" href="#" id="blogDD" role="button"
-             data-bs-toggle="dropdown" aria-expanded="false">
-            Blogs
-          </a>
+             data-bs-toggle="dropdown" aria-expanded="false">Blogs</a>
           <ul class="dropdown-menu" aria-labelledby="blogDD">
             <li><a class="dropdown-item" href="/blog">All Posts</a></li>
             <li><a class="dropdown-item" href="/blog/tips">Tips & Guides</a></li>
@@ -103,21 +74,64 @@
         </li>
       </ul>
 
-      <!-- Mobile-only actions -->
+      <!-- Mobile-only items inside collapse -->
+      <form class="d-lg-none px-2 pt-2" role="search" action="/search" method="get">
+        <div class="input-group">
+          <select name="intent" class="form-select" style="max-width:110px">
+            <option value="buy" selected>Buy</option>
+            <option value="rent">Rent</option>
+            <option value="pg">PG</option>
+          </select>
+          <input name="q" type="search" class="form-control" placeholder="Locality / Project / Society" required>
+          <button class="btn btn-brand text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
+
       <ul class="navbar-nav d-lg-none">
-        <li class="nav-item">
-          <a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a>
-        </li>
-        <li class="nav-item my-2">
-          <a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a>
-        </li>
-        <li class="nav-item d-flex align-items-center">
-          <img src="f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" class="flag me-2" alt="UAE"> UAE
-        </li>
+        <li class="nav-item"><a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a></li>
+        <li class="nav-item my-2"><a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a></li>
       </ul>
+    </div>
+
+    <!-- CENTER SEARCH (desktop) -->
+    <form class="nav-search d-none d-lg-flex order-lg-2 mx-lg-3 flex-grow-1"
+          role="search" action="/search" method="get">
+      <input type="hidden" name="intent" id="navIntent" value="buy">
+      <div class="nav-search-group">
+        <div class="dropdown">
+          <button class="btn mode-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Buy</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="#" data-value="buy">Buy</a></li>
+            <li><a class="dropdown-item" href="#" data-value="rent">Rent</a></li>
+            <li><a class="dropdown-item" href="#" data-value="pg">PG</a></li>
+          </ul>
+        </div>
+        <input class="form-control q-input" name="q" type="search"
+               placeholder="Enter Locality / Project / Society / Landmark" required>
+        <button class="icon-btn" type="button" title="Use my location"><i class="fa-solid fa-location-crosshairs"></i></button>
+        <button class="icon-btn" type="button" title="Voice search"><i class="fa-solid fa-microphone"></i></button>
+        <button class="search-btn" type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </form>
+
+    <!-- RIGHT SIDE -->
+    <div class="d-flex align-items-center ms-auto order-lg-3">
+      <a href="" class="btn btn-link text-decoration-none d-none d-lg-inline-flex align-items-center me-2 text-dark">
+        <i class="fa-regular fa-user me-2"></i> Login / Register
+      </a>
+      <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
+        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+      </a>
+    <button class="navbar-toggler ms-2 border-0" type="button"
+        data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
     </div>
   </div>
 </nav>
+
 
 
 <!-- PROPERTY META -->

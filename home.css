@@ -78,7 +78,7 @@
 .q-input{ border:0; box-shadow:none!important; background:#fff; padding:.55rem .5rem; flex:1 1 auto; }
 .icon-btn, .search-btn{
   width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
-  background:#f1f7ff; color:#0d6efd; border:0;
+  background:#f1f7ff; color:#127782; border:0;
 }
 .search-btn{ background:transparent; color:#3b4652; border-left:1px solid #e9eff6; margin-left:2px; }
 
@@ -189,7 +189,7 @@
     background:linear-gradient(180deg,rgba(6,28,28,.75) 0%,rgba(6,28,28,.35) 35%,rgba(6,28,28,0) 70%);
   }
   .hero-thumbs{
-    right:auto; left:50%; bottom:16px; top:auto; transform:translateX(-50%);
+    right:auto; left:50%;  top:auto; transform:translateX(-50%);
     flex-direction:row; padding-right:0;
   }
   .thumb{ width:50px; height:50px; }

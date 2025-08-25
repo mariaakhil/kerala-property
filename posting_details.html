@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Property Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap / Icons (only include once in your base layout) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+</head>
+<style>
+
+/* =========================
+   Brand variables & helpers
+   ========================= */
+:root{
+  --brand:#127782;
+  --brand-600:#0f6a72;
+  --line:#e6ebf1;
+  --muted:#6b7280;
+  --ring:rgba(18,119,130,.18);
+}
+
+.text-brand{ color:var(--brand)!important; }
+
+.btn-brand{ background:var(--brand); color:#fff; border:0; }
+.btn-brand:hover{ background:var(--brand-600); color:#fff; }
+
+.btn-outline-brand{
+  border:1px solid var(--brand);
+  color:var(--brand);
+  background:#fff;
+}
+.btn-outline-brand:hover{ background:var(--brand); color:#fff; }
+
+/* =========================
+   Vertical stepper (left)
+   ========================= */
+.stepper{ position:relative; display:flex; flex-direction:column; gap:.25rem; }
+.stepper::before{
+  content:""; position:absolute; left:17px; top:12px; bottom:12px;
+  width:2px; background:var(--line);
+}
+.step-link{
+  display:flex; align-items:flex-start; gap:.6rem;
+  padding:.6rem .25rem .6rem .75rem;
+  background:transparent; border:0; text-align:left; position:relative;
+  color:#0f172a;
+}
+.step-link .dot{
+  flex:0 0 12px; height:12px; border-radius:50%;
+  background:#cbd5e1; border:2px solid #fff; box-shadow:0 0 0 2px var(--line);
+  margin-top:.35rem; margin-left:-2px;
+}
+.step-link .step-text small{ font-size:.8rem; color:var(--muted); display:block; }
+
+.step-link.active{ color:var(--brand); }
+.step-link.active .dot{ background:var(--brand); box-shadow:0 0 0 2px var(--ring); }
+.step-link.completed .dot{ background:#127782; }
+
+/* Score ring */
+.score-ring{
+  width:58px; height:58px; border-radius:50%;
+  background:conic-gradient(#127782 0 56%, #e2e8f0 56% 100%);
+  display:grid; place-items:center;
+}
+.score-ring span{ background:#fff; border-radius:50%; padding:6px 8px; font-weight:700; }
+
+/* =========================
+   Chips (filter-like buttons)
+   ========================= */
+.chip{
+  border:1px solid #dfe6ea; border-radius:999px;
+  background:#fff; color:#0f172a;
+  padding:.5rem .85rem; font-weight:600; transition:.15s ease;
+}
+.chip:hover{ background:#f7fbfb; }
+.chip.active,
+.chip:focus,
+.chip:active{
+  background:var(--brand); border-color:var(--brand); color:#fff;
+  box-shadow:0 0 0 3px var(--ring);
+}
+
+/* =========================
+   Pills (options like 3 BHK, etc.)
+   ========================= */
+.pill-group{ display:flex; gap:.5rem; flex-wrap:wrap }
+.pill{
+  border:1px solid #d9e1ea; background:#fff; color:#0f2748;
+  padding:.45rem .9rem; border-radius:999px; cursor:pointer;
+  transition:.15s ease; user-select:none;
+}
+.pill:hover{ background:#f6fafc }
+.pill.active,
+.pill:focus,
+.pill:active{
+  background:var(--brand); color:#fff; border-color:var(--brand);
+  box-shadow:0 0 0 3px var(--ring) inset;
+}
+
+/* =========================
+   Amenity / checkbox tiles
+   ========================= */
+.amenity{
+  border:1px solid #e6ebf1; border-radius:.6rem; padding:.45rem .8rem;
+  display:inline-flex; align-items:center; gap:.5rem; cursor:pointer;
+  transition:.15s ease;
+}
+.amenity input{ transform:translateY(-1px); }
+
+/* Highlight tile when checked (modern browsers support :has) */
+.amenity:has(input:checked){
+  border-color:var(--brand);
+  background:#e6f6f7;
+  color:var(--brand);
+  box-shadow:0 0 0 3px var(--ring);
+}
+
+/* =========================
+   Links & small helpers
+   ========================= */
+.add-link{ color:var(--brand); font-weight:600; text-decoration:none }
+.add-link:hover{ text-decoration:underline }
+
+.subtle{ color:#304865; font-weight:700; }
+
+.qmark{
+  display:inline-flex; width:18px; height:18px; border-radius:50%;
+  background:#e8f1ff; color:var(--brand);
+  align-items:center; justify-content:center;
+  font-size:.75rem; margin-left:.35rem;
+}
+
+/* =========================
+   Form niceties (brand focus)
+   ========================= */
+.form-control:focus,
+.form-select:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 .2rem var(--ring);
+}
+.form-check-input:checked{
+  background-color:var(--brand);
+  border-color:var(--brand);
+}
+.form-check-input:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 .2rem var(--ring);
+}
+
+/* Divider utility */
+.hr-light{ border-color:var(--line); }
+
+/* =========================
+   Responsive stepper (mobile)
+   ========================= */
+@media (max-width: 991.98px){
+  .stepper{ flex-direction:row; overflow-x:auto; padding:.25rem 0 .35rem; gap:.5rem; }
+  .stepper::before{ display:none; }
+  .step-link{ border:1px solid var(--line); border-radius:999px; padding:.45rem .8rem; }
+  .step-link .dot{ display:none; }
+}
+
+/* Optional utilities */
+.sticky-lg-top{ top:80px; }
+.btn-big{ padding:.7rem 1.25rem; border-radius:.65rem; font-weight:600; }
+
+
+
+
+/* ====== Section scaffold ====== */
+.post-steps h3,.post-steps h4{ line-height:1.2; }
+.border-dashed{ border:2px dashed #d8dee5 !important; }
+
+/* Keep the left card sticky only on ≥ lg (Bootstrap already does this),
+   just give it some breathing room. */
+.sticky-lg-top{ top:84px; }
+
+/* ====== Stepper: vertical on desktop, horizontal scroll on mobile ====== */
+.post-steps .stepper{
+  position:relative; display:flex; flex-direction:column; gap:.25rem;
+}
+.post-steps .stepper::before{
+  content:""; position:absolute; left:17px; top:12px; bottom:12px;
+  width:2px; background:#e6ebf1;
+}
+.post-steps .step-link{
+  display:flex; align-items:flex-start; gap:.6rem;
+  padding:.6rem .25rem .6rem .75rem; background:transparent; border:0;
+  text-align:left; color:#0f172a;
+}
+.post-steps .step-link .dot{
+  flex:0 0 12px; height:12px; border-radius:50%;
+  background:#cbd5e1; border:2px solid #fff; box-shadow:0 0 0 2px #e6ebf1;
+  margin-top:.35rem; margin-left:-2px;
+}
+.post-steps .step-link.active{ color:#127782; }
+.post-steps .step-link.active .dot{ background:#127782; box-shadow:0 0 0 2px rgba(18,119,130,.18); }
+.post-steps .step-link.completed .dot{ background:#16a34a; }
+.post-steps .step-link .step-text small{ font-size:.8rem; color:#6b7280; }
+
+/* Pills & chips (already in your theme, just ensuring compact on small) */
+.post-steps .pill-group{ display:flex; flex-wrap:wrap; gap:.5rem; }
+.post-steps .pill{
+  border:1px solid #d9e1ea; background:#fff; color:#0f2748;
+  padding:.45rem .9rem; border-radius:999px; cursor:pointer; transition:.15s;
+}
+.post-steps .pill:hover{ background:#f6fafc; }
+.post-steps .pill.active{
+  background:#127782; color:#fff; border-color:#127782;
+  box-shadow:0 0 0 3px rgba(18,119,130,.18) inset;
+}
+.post-steps .chip{
+  border:1px solid #dfe6ea; border-radius:999px; background:#fff; color:#0f172a;
+  padding:.5rem .85rem; font-weight:600; transition:.15s;
+}
+.post-steps .chip.active{ background:#127782; border-color:#127782; color:#fff; }
+
+/* Form focus brand color */
+.post-steps .form-control:focus,
+.post-steps .form-select:focus{
+  border-color:#127782;
+  box-shadow:0 0 0 .2rem rgba(18,119,130,.18);
+}
+
+/* ====== Responsive tweaks ====== */
+@media (max-width: 991.98px){
+  /* Stepper becomes a horizontal chip row that scrolls */
+  .post-steps .stepper{
+    flex-direction:row; overflow-x:auto; padding:.25rem 0 .4rem; gap:.5rem;
+    scrollbar-width:none;
+  }
+  .post-steps .stepper::-webkit-scrollbar{ display:none; }
+  .post-steps .stepper::before{ display:none; }
+  .post-steps .step-link{
+    border:1px solid #e6ebf1; border-radius:999px; padding:.45rem .8rem;
+    align-items:center;
+  }
+  .post-steps .step-link .dot{ display:none; }
+  .post-steps .step-link .step-text small{ display:none; } /* tighter chips */
+}
+
+/* Action buttons wrap nicely on phones */
+.post-steps .tab-pane .d-flex.gap-3{ flex-wrap:wrap; }
+@media (max-width: 575.98px){
+  .post-steps .tab-pane .d-flex.gap-3 .btn{ flex:1 1 100%; }
+  .post-steps .form-floating>label{ font-size:.85rem; }
+}
+
+/* Give upload box a dashed border look */
+.post-steps .border-dashed{ border-radius:12px; background:#fafcff; }
+
+/* Amenities ‘checked’ look (works in modern browsers) */
+.post-steps .amenity{
+  border:1px solid #e6ebf1; border-radius:.6rem; padding:.45rem .8rem;
+  display:inline-flex; align-items:center; gap:.5rem; cursor:pointer; transition:.15s;
+}
+.post-steps .amenity:has(input:checked){
+  border-color:#127782; background:#e6f6f7; color:#127782;
+  box-shadow:0 0 0 3px rgba(18,119,130,.18);
+}
+
+
+
+/* --- make sure nothing inside the tab panes gets clipped --- */
+.post-steps .tab-content,
+.post-steps .tab-pane,
+.post-steps .card-body{ overflow: visible; }
+
+/* --- prevent flex children (cols) from pushing content off-screen on mobile --- */
+@media (max-width: 575.98px){
+  .post-steps .row > [class*="col-"]{ min-width: 0; }   /* critical */
+}
+
+/* --- horizontal stepper must not create page-wide overflow --- */
+@media (max-width: 991.98px){
+  .post-steps .stepper{ max-width: 100%; }
+  .post-steps .step-link{ white-space: nowrap; }        /* chips stay in one line & scroll */
+}
+
+/* --- make form-floating inputs comfortable on very small devices --- */
+@media (max-width: 380px){
+  .form-floating > .form-control,
+  .form-floating > .form-select{
+    height: auto;
+    padding: .85rem .75rem;
+  }
+  .form-floating > label{ padding: .35rem .75rem; font-size: .85rem; }
+}
+
+/* --- iOS Safari: avoid zooming that wrecks layout on focus --- */
+@supports (-webkit-touch-callout: none){
+  input, select, textarea{ font-size: 16px; }
+}
+
+/* keep brand look intact */
+.post-steps .form-control:focus,
+.post-steps .form-select:focus{
+  border-color:#127782;
+  box-shadow:0 0 0 .2rem rgba(18,119,130,.18);
+}
+
+
+
+
+/* Mobile title bar */
+.pane-mobile-title{
+           /* blue */
+  color:#fff;
+  font-weight:700;
+  padding:.65rem .9rem;
+  border-radius:.75rem;
+  margin-bottom:.75rem;
+}
+
+/* if you want it to float while scrolling on small screens */
+@media (max-width: 575.98px){
+  .pane-mobile-title{
+    position:sticky;
+    top:.5rem;                  /* adjust if you have a fixed nav */
+    z-index: 2;
+  }
+}
+
+
+/* --- MOBILE FIXES (no HTML changes needed) --- */
+@media (max-width: 991.98px){
+  /* 1) Show the content (right side) ABOVE the stepper on phones */
+  .post-steps main{ order:1; }
+  .post-steps aside{ order:2; }
+
+
+  /* 6) Comfortable headings on small screens */
+  .post-steps h2, .post-steps h3, .post-steps h4{
+    display:block;
+    margin-top:.25rem;
+  }
+}
+
+
+</style>
+
+
+<body>
+<div class="topbar py-1 d-none d-md-block">
+  <div class="container d-flex align-items-center gap-3">
+    <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
+    
+    <!-- UAE flag on far right -->
+    <span class="ms-auto d-inline-flex align-items-center gap-2">
+     <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
+    </span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container-fluid align-items-center px-0">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
+      <img src="KPO.png" alt="Kerala Property Online" class="brand-logo">
+    </a>
+
+    <!-- LEFT NAV (collapse on mobile, visible on lg) -->
+    <div class="collapse navbar-collapse order-lg-1 ms-3" id="mainNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" href="/">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="propDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Properties</a>
+          <ul class="dropdown-menu" aria-labelledby="propDD">
+            <li><a class="dropdown-item" href="/properties/rent">For Rent</a></li>
+            <li><a class="dropdown-item" href="/properties/buy">For Sale</a></li>
+            <li><a class="dropdown-item" href="/properties/commercial">Commercial</a></li>
+            <li><a class="dropdown-item" href="/properties/agents">Agents</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="blogDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Blogs</a>
+          <ul class="dropdown-menu" aria-labelledby="blogDD">
+            <li><a class="dropdown-item" href="/blog">All Posts</a></li>
+            <li><a class="dropdown-item" href="/blog/tips">Tips & Guides</a></li>
+            <li><a class="dropdown-item" href="/blog/news">Market News</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Mobile-only items inside collapse -->
+      <form class="d-lg-none px-2 pt-2" role="search" action="/search" method="get">
+        <div class="input-group">
+          <select name="intent" class="form-select" style="max-width:110px">
+            <option value="buy" selected>Buy</option>
+            <option value="rent">Rent</option>
+            <option value="pg">PG</option>
+          </select>
+          <input name="q" type="search" class="form-control" placeholder="Locality / Project / Society" required>
+          <button class="btn btn-brand text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
+
+      <ul class="navbar-nav d-lg-none">
+        <li class="nav-item"><a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a></li>
+        <li class="nav-item my-2"><a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a></li>
+      </ul>
+    </div>
+
+    <!-- CENTER SEARCH (desktop) -->
+    <form class="nav-search d-none d-lg-flex order-lg-2 mx-lg-3 flex-grow-1"
+          role="search" action="/search" method="get">
+      <input type="hidden" name="intent" id="navIntent" value="buy">
+      <div class="nav-search-group">
+        <div class="dropdown">
+          <button class="btn mode-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Buy</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="#" data-value="buy">Buy</a></li>
+            <li><a class="dropdown-item" href="#" data-value="rent">Rent</a></li>
+           
+          </ul>
+        </div>
+        <input class="form-control q-input" name="q" type="search"
+               placeholder="Enter Locality / Project / Society / Landmark" required>
+        <button class="icon-btn" type="button" title="Use my location"><i class="fa-solid fa-location-crosshairs"></i></button>
+        <button class="icon-btn" type="button" title="Voice search"><i class="fa-solid fa-microphone"></i></button>
+        <button class="search-btn" type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </form>
+
+    <!-- RIGHT SIDE -->
+    <div class="d-flex align-items-center ms-auto order-lg-3">
+      <a href="" class="btn btn-link text-decoration-none d-none d-lg-inline-flex align-items-center me-2 text-dark">
+        <i class="fa-regular fa-user me-2"></i> Login / Register
+      </a>
+      <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
+        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+      </a>
+    <button class="navbar-toggler ms-2 border-0" type="button"
+        data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    </div>
+  </div>
+</nav>
+
+
+<section class="post-steps py-4">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Sidebar stepper -->
+      <aside class="col-lg-4 ">
+        <div class="card shadow-sm sticky-lg-top" style="top:84px">
+          <div class="card-body">
+            <div class="stepper nav flex-lg-column nav-pills" id="stepper" role="tablist">
+              <!-- each button targets a tab-pane id -->
+              <button class="step-link" id="s1" data-bs-toggle="pill"
+                      data-bs-target="#step1" type="button" role="tab">
+                <span class="dot"></span>
+                <div class="step-text">
+                  <strong>Basic Details</strong>
+                  <small class="text-muted d-block">Step 1</small>
+                </div>
+              </button>
+
+              <button class="step-link " id="s2" data-bs-toggle="pill"
+                      data-bs-target="#step2" type="button" role="tab">
+                <span class="dot"></span>
+                <div class="step-text">
+                  <strong>Location Details</strong>
+                  <small class="text-muted d-block">Step 2</small>
+                </div>
+              </button>
+
+              <button class="step-link" id="s3" data-bs-toggle="pill"
+                      data-bs-target="#step3" type="button" role="tab">
+                <span class="dot"></span>
+                <div class="step-text">
+                  <strong>Property Profile</strong>
+                  <small class="text-muted d-block">Step 3</small>
+                </div>
+              </button>
+
+              <button class="step-link" id="s4" data-bs-toggle="pill"
+                      data-bs-target="#step4" type="button" role="tab">
+                <span class="dot"></span>
+                <div class="step-text">
+                  <strong>Photos, Videos & Voice-over</strong>
+                  <small class="text-muted d-block">Step 4</small>
+                </div>
+              </button>
+
+              <button class="step-link" id="s5" data-bs-toggle="pill"
+                      data-bs-target="#step5" type="button" role="tab">
+                <span class="dot"></span>
+                <div class="step-text">
+                  <strong>Amenities section</strong>
+                  <small class="text-muted d-block">Step 5</small>
+                </div>
+              </button>
+            </div>
+
+            <!-- Optional: property score widget -->
+            <hr class="my-4">
+            
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right content -->
+      <main class="col-lg-8">
+        <div class="tab-content" id="stepContent">
+          <!-- STEP 1 -->
+          <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="s1">
+            <h3 class="fw-bold mb-1">Welcome back, <span class="text-brand">Maria Davis</span>,</h3>
+            <h4 class="fw-semibold mb-4">Fill out basic details</h4>
+
+            <div class="mb-3 small text-muted">I'm looking to</div>
+            <div class="btn-group btn-group-sm gap-2 flex-wrap" role="group" aria-label="intent">
+              <input class="btn-check" type="radio" name="intent" id="sell" checked>
+              <label class="btn btn-outline-secondary" for="sell">Sell</label>
+
+              <input class="btn-check" type="radio" name="intent" id="rent">
+              <label class="btn btn-outline-secondary" for="rent">Rent</label>
+
+            </div>
+
+            <div class="mt-4 mb-2 small text-muted">What kind of property do you have?</div>
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="segment" id="res" checked>
+                <label class="form-check-label" for="res">Residential</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="segment" id="com">
+                <label class="form-check-label" for="com">Commercial</label>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+              <button type="button" class="chip active">Flat/Apartment</button>
+              <button type="button" class="chip">Independent House / Villa</button>
+              <button type="button" class="chip">Independent / Builder Floor</button>
+              <button type="button" class="chip">Plot / Land</button>
+              <button type="button" class="chip">1 RK/ Studio Apartment</button>
+              <button type="button" class="chip">Serviced Apartment</button>
+              <button type="button" class="chip">Farmhouse</button>
+              <button type="button" class="chip">Other</button>
+            </div>
+
+            <div class="d-flex gap-3 mt-4">
+              <button class="btn btn-brand" data-next="#s2">Continue</button>
+              <button class="btn btn-outline-secondary" disabled>Save draft</button>
+            </div>
+          </div>
+         
+          <!-- STEP 2 -->
+          <div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="s2">
+            <h4  class="fw-semibold">Location Details</h4>
+            <div class="row g-3">
+              <div class="col-md-6"><input class="form-control" placeholder="City"></div>
+              <div class="col-md-6"><input class="form-control" placeholder="Locality / Area"></div>
+              <div class="col-md-6"><input class="form-control" placeholder="Project / Society"></div>
+              <div class="col-md-6"><input class="form-control" placeholder="Pincode"></div>
+            </div>
+            <div class="d-flex gap-3 mt-4">
+              <button class="btn btn-outline-secondary" data-prev="#s1">Back</button>
+              <button class="btn btn-brand" data-next="#s3">Continue</button>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="s3">
+            
+<section class="container py-4">
+  <h2 class="mb-3"  class="pane-mobile-title d-lg-none">Tell us about your property</h2>
+
+  <form id="propertyDetails" class="row g-4">
+
+    <!-- BHK -->
+    <div class="col-12">
+      <div class="subtle mb-2">Your apartment is a</div>
+      <div class="pill-group" data-field="bhk">
+        <button type="button" class="pill active" data-value="3 BHK">3 BHK</button>
+        <button type="button" class="pill" data-value="4 BHK">4 BHK</button>
+        <button type="button" class="pill" data-value="Other">Other</button>
+      </div>
+      <input type="hidden" name="bhk" value="3 BHK">
+    </div>
+
+    <!-- Room details -->
+    <div class="col-12 col-lg-6">
+      <h5 class="subtle mb-2">Add Room Details</h5>
+
+      <div class="mb-2">No. of Bedrooms</div>
+      <div class="pill-group mb-3" data-field="bedrooms">
+        <button type="button" class="pill">1</button>
+        <button type="button" class="pill">2</button>
+        <button type="button" class="pill active">3</button>
+        <button type="button" class="pill">4</button>
+        <button type="button" class="pill" data-value="Other">Add other</button>
+      </div>
+      <input type="hidden" name="bedrooms" value="3">
+
+      <div class="mb-2">No. of Bathrooms</div>
+      <div class="pill-group mb-3" data-field="bathrooms">
+        <button type="button" class="pill">1</button>
+        <button type="button" class="pill">2</button>
+        <button type="button" class="pill active">3</button>
+        <button type="button" class="pill">4</button>
+        <button type="button" class="pill" data-value="Other">Add other</button>
+      </div>
+      <input type="hidden" name="bathrooms" value="3">
+
+      <div class="mb-2">Balconies</div>
+      <div class="pill-group" data-field="balconies">
+        <button type="button" class="pill">0</button>
+        <button type="button" class="pill">1</button>
+        <button type="button" class="pill active">2</button>
+        <button type="button" class="pill">3</button>
+        <button type="button" class="pill" data-value=">3">More than 3</button>
+      </div>
+      <input type="hidden" name="balconies" value="2">
+    </div>
+
+    <!-- Areas -->
+    <div class="col-12 col-lg-6">
+      <h5 class="subtle mb-2">Add Area Details <span class="qmark">?</span></h5>
+      <small class="text-muted d-block mb-2">At least one area type is mandatory</small>
+
+      <div class="row g-2 align-items-center mb-2">
+        <div class="col-7 col-sm-8">
+          <div class="form-floating">
+            <input class="form-control" id="carpetArea" name="carpet_area" placeholder="1200" value="1200">
+            <label for="carpetArea">Carpet Area</label>
+          </div>
+        </div>
+        <div class="col-5 col-sm-4">
+          <div class="form-floating">
+            <select class="form-select" id="carpetUnit" name="carpet_unit">
+              <option selected>sq.ft.</option><option>sq.m.</option><option>sq.yd.</option>
+            </select>
+            <label for="carpetUnit">Unit</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="builtWrap" class="d-none">
+        <div class="row g-2 align-items-center mb-2">
+          <div class="col-7 col-sm-8">
+            <div class="form-floating">
+              <input class="form-control" id="builtArea" name="built_area" placeholder="—">
+              <label for="builtArea">Built-up Area</label>
+            </div>
+          </div>
+          <div class="col-5 col-sm-4">
+            <div class="form-floating">
+              <select class="form-select" id="builtUnit" name="built_unit">
+                <option selected>sq.ft.</option><option>sq.m.</option><option>sq.yd.</option>
+              </select>
+              <label for="builtUnit">Unit</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sbaWrap" class="d-none">
+        <div class="row g-2 align-items-center">
+          <div class="col-7 col-sm-8">
+            <div class="form-floating">
+              <input class="form-control" id="sbaArea" name="sba_area" placeholder="—">
+              <label for="sbaArea">Super Built-up Area</label>
+            </div>
+          </div>
+          <div class="col-5 col-sm-4">
+            <div class="form-floating">
+              <select class="form-select" id="sbaUnit" name="sba_unit">
+                <option selected>sq.ft.</option><option>sq.m.</option><option>sq.yd.</option>
+              </select>
+              <label for="sbaUnit">Unit</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <a href="#" class="add-link me-3" id="addBuilt">+ Add Built-up Area</a>
+        <a href="#" class="add-link" id="addSBA">+ Add Super Built-up Area</a>
+      </div>
+    </div>
+
+    <!-- Floor details -->
+    <div class="col-12">
+      <h5 class="subtle mb-2">Floor Details</h5>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input type="number" min="1" class="form-control" id="totalFloors" name="total_floors" value="9">
+            <label for="totalFloors">Total Floors</label>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <select class="form-select" id="onFloor" name="property_floor">
+              <option>Ground</option>
+              <option selected>3</option>
+              <option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+            </select>
+            <label for="onFloor">Property on Floor</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Availability -->
+    <div class="col-12">
+      <div class="subtle mb-2">Availability Status</div>
+      <div class="pill-group" data-field="availability">
+        <button type="button" class="pill active">Ready to move</button>
+        <button type="button" class="pill">Under construction</button>
+      </div>
+      <input type="hidden" name="availability" value="Ready to move">
+    </div>
+
+    <!-- Age -->
+    <div class="col-12">
+      <div class="subtle mb-2">Age of property</div>
+      <div class="pill-group" data-field="age">
+        <button type="button" class="pill">0–1 years</button>
+        <button type="button" class="pill">1–5 years</button>
+        <button type="button" class="pill">5–10 years</button>
+        <button type="button" class="pill">10+ years</button>
+      </div>
+      <input type="hidden" name="age">
+    </div>
+
+    <!-- Ownership -->
+    <div class="col-12">
+      <div class="subtle mb-2">Ownership <span class="qmark">i</span></div>
+      <div class="pill-group" data-field="ownership">
+        <button type="button" class="pill">Freehold</button>
+        <button type="button" class="pill">Leasehold</button>
+        <button type="button" class="pill">Co-operative society</button>
+        <button type="button" class="pill">Power of Attorney</button>
+      </div>
+      <input type="hidden" name="ownership">
+    </div>
+
+    <!-- Price -->
+    <div class="col-12">
+      <h5 class="subtle mb-2">Price Details</h5>
+      <div class="row g-3 mb-2">
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="number" class="form-control" id="expectedPrice" name="expected_price" placeholder="0">
+            <label for="expectedPrice">₹ Expected Price</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="number" class="form-control" id="pricePSF" name="price_psf" placeholder="0">
+            <label for="pricePSF">₹ Price per sq.ft.</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="allInc" name="all_inclusive">
+        <label class="form-check-label" for="allInc">All inclusive price</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="taxEx" name="tax_excluded">
+        <label class="form-check-label" for="taxEx">Tax and Govt. charges excluded</label>
+      </div>
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" id="nego" name="negotiable">
+        <label class="form-check-label" for="nego">Price Negotiable</label>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="col-12">
+      <div class="subtle mb-2">What makes your property unique</div>
+      <textarea class="form-control" rows="4" name="description"
+        placeholder="Share some details about your property like spacious rooms, well maintained facilities.."></textarea>
+      <small class="text-muted">Minimum 30 characters recommended.</small>
+    </div>
+
+
+  </form>
+</section>
+
+            <div class="d-flex gap-3 mt-4">
+              <button class="btn btn-outline-secondary" data-prev="#s2">Back</button>
+              <button class="btn btn-brand" data-next="#s4">Continue</button>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="s4">
+            <h4 class="fw-semibold mb-3"  class="pane-mobile-title d-lg-none">Photos, Videos & Voice-over</h4>
+            <div class="p-4 border border-dashed rounded-3 text-center">
+              <i class="fa-regular fa-image fa-2x mb-2 text-muted"></i>
+              <div class="mb-2">Drag & drop files here, or <a href="#">browse</a></div>
+              <small class="text-muted">JPEG/PNG/MP4 supported</small>
+            </div>
+            <div class="d-flex gap-3 mt-4">
+              <button class="btn btn-outline-secondary" data-prev="#s3">Back</button>
+              <button class="btn btn-brand" data-next="#s5">Continue</button>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="s5">
+            <h4 class="fw-semibold mb-3"  class="pane-mobile-title d-lg-none">Amenities</h4>
+            <div class="d-flex flex-wrap gap-2">
+              <label class="amenity"><input type="checkbox"> Parking</label>
+              <label class="amenity"><input type="checkbox"> Lift</label>
+              <label class="amenity"><input type="checkbox"> Power Backup</label>
+              <label class="amenity"><input type="checkbox"> Gym</label>
+              <label class="amenity"><input type="checkbox"> Pool</label>
+            </div>
+            <div class="d-flex gap-3 mt-4">
+              <button class="btn btn-outline-secondary" data-prev="#s4">Back</button>
+              <button class="btn btn-brand">Finish & Publish</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+
+<script>
+ 
+ 
+  // Update the mobile title with the current step's label
+  const titleEl = document.getElementById('mobilePaneTitle');
+  function updateMobileTitle(fromBtn){
+    if(!titleEl) return;
+    const txt = fromBtn?.querySelector('.step-text strong')?.textContent?.trim();
+    titleEl.textContent = txt || 'Property Details';
+  }
+  // initial
+  updateMobileTitle(document.querySelector('.step-link.active'));
+  // on tab change
+  document.getElementById('stepper')?.addEventListener('shown.bs.tab', (e)=>{
+    updateMobileTitle(e.target);
+  });
+
+
+
+  // Continue / Back buttons move the tab
+  document.querySelectorAll('[data-next],[data-prev]').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      const target = btn.dataset.next || btn.dataset.prev;
+      if(!target) return;
+      const trigger = document.querySelector(target);
+      if(trigger){
+        const tab = new bootstrap.Tab(trigger);
+        tab.show();
+      }
+    });
+  });
+
+  // Mark completed steps when moving forward
+  const stepper = document.getElementById('stepper');
+  stepper?.addEventListener('shown.bs.tab', (ev)=>{
+    const all = stepper.querySelectorAll('.step-link');
+    let passed = true;
+    all.forEach(btn=>{
+      if(passed){ btn.classList.add('completed'); }
+      if(btn === ev.target) passed = false; // stop marking after current
+    });
+    // Remove completed from steps after current
+    let flag = false;
+    all.forEach(btn=>{
+      if(btn === ev.target) flag = true;
+      if(flag) btn.classList.remove('completed');
+    });
+  });
+
+  // Activate the first tab as completed = none
+  document.querySelector('.step-link.active')?.classList.remove('completed');
+</script>
+<script>
+  // Pill behavior (single-select groups)
+  document.querySelectorAll('.pill-group').forEach(group => {
+    const hidden = group.parentElement.querySelector('input[type="hidden"][name="'+(group.dataset.field||'')+'"]');
+    group.addEventListener('click', e => {
+      const btn = e.target.closest('.pill');
+      if(!btn) return;
+      // toggle active within this group
+      group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const val = btn.dataset.value ?? btn.textContent.trim();
+      if(hidden) hidden.value = val;
+    });
+  });
+
+  // “Add area” revealers
+  document.getElementById('addBuilt').addEventListener('click', e=>{
+    e.preventDefault();
+    document.getElementById('builtWrap').classList.remove('d-none');
+    e.target.remove();
+  });
+  document.getElementById('addSBA').addEventListener('click', e=>{
+    e.preventDefault();
+    document.getElementById('sbaWrap').classList.remove('d-none');
+    e.target.remove();
+  });
+</script>

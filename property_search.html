@@ -26,13 +26,12 @@
 <div class="topbar py-1 d-none d-md-block">
   <div class="container d-flex align-items-center gap-3">
     <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
-    <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
-    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
-
+    
     <!-- UAE flag on far right -->
     <span class="ms-auto d-inline-flex align-items-center gap-2">
-      <img src="f02e06a721ee88da616e588dd28bfb9088237e72 (1).png" alt="UAE" class="flag">
-      <small class="d-none d-lg-inline">UAE</small>
+     <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
     </span>
   </div>
 </div>
@@ -123,10 +122,12 @@
       <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
         Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
       </a>
-      <button class="navbar-toggler ms-2 border-0" type="button" data-bs-toggle="collapse"
-              data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <button class="navbar-toggler ms-2 border-0" type="button"
+        data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
     </div>
   </div>
 </nav>
@@ -682,7 +683,7 @@
       <button class="btn btn-teal w-100 mt-2" data-bs-dismiss="offcanvas">Apply</button>
     </div>
   </div>
-
+</section>
 
 
 <!-- CTA + Subscribe -->
@@ -872,7 +873,7 @@
 (() => {
   const wrapper   = document.querySelector('.nav-search');
   if (!wrapper) return;
-  const menuItems = wrapper.querySelectorAll('.dropdown-menu .dropdown-item');
+  
   const btn       = wrapper.querySelector('.mode-btn');
   const hidden    = document.getElementById('navIntent');
 
@@ -886,8 +887,7 @@
     });
   });
 })();
-</script>
-<script>
+
 // fake "View Number" interaction
 document.querySelectorAll('[data-view-number]').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -896,8 +896,7 @@ document.querySelectorAll('[data-view-number]').forEach(btn=>{
     btn.textContent = '98765 43210';
   });
 });
-</script>
-<script>
+
 (function () {
   const chipsWrap = document.getElementById('resultChips');
   if (!chipsWrap) return;

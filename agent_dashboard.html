@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap / Icons (only include once in your base layout) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    /* brand helpers */
+.btn-outline-brand{ border:1px solid #cfe9ea; color:#127782; }
+.btn-outline-brand:hover{ background:#e6f6f7; color:#127782; }
+.verify-pill{
+  width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  background:#f3fbfc;color:#127782;font-size:16px;border:1px solid #cfe9ea;
+}
+
+/* plan cards */
+.plan-card{
+  position:relative; display:block; text-decoration:none; color:#0f172a;
+  border:1px solid #e7eef1; border-radius:18px; padding:20px 20px 16px; overflow:hidden;
+  background:#fff; box-shadow:0 6px 24px rgba(0,0,0,.06);
+  background-image: radial-gradient(120% 70% at 90% 120%, #f5fafb 0, #fff 60%);
+}
+.plan-card:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.08); }
+
+/* corner ribbon */
+.corner{ position:absolute; top:0; right:0; width:0; height:0;
+  border-top:70px solid; border-left:70px solid transparent;
+}
+.corner-teal{ border-top-color:#0ea5b7; }
+.corner-orange{ border-top-color:#ff6b00; }
+.corner-indigo{ border-top-color:#6366f1; }
+.corner > span{
+  position:absolute; top:6px; right:-2px; transform:rotate(45deg);
+  color:#fff; font-weight:800; font-size:.78rem; letter-spacing:.6px;
+}
+
+/* round price/duration bubble */
+.offer-badge{
+  position:absolute; top:16px; left:16px;
+  width:96px; height:96px; border-radius:50%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:#fff; text-align:center;
+  background:radial-gradient(110px 110px at 30% 30%, #27b3bf 0, #0ea5b7 60%);
+  box-shadow:0 10px 24px rgba(14,165,183,.35);
+}
+.offer-orange{
+  background:radial-gradient(110px 110px at 30% 30%, #ff9a4d 0, #ff6b00 60%);
+  box-shadow:0 10px 24px rgba(255,107,0,.35);
+}
+.offer-indigo{
+  background:radial-gradient(110px 110px at 30% 30%, #8b8cfb 0, #6366f1 62%);
+  box-shadow:0 10px 24px rgba(99,102,241,.35);
+}
+.offer-badge .big{ font-weight:900; font-size:1rem; line-height:1; }
+.offer-badge small{ font-weight:700; opacity:.95; }
+
+/* content spacing so bubble doesn't overlap */
+.plan-content{ margin-left:110px; }
+.plan-title{ margin:0 0 .25rem 0; font-weight:800; }
+.plan-sub{ margin:0 0 .75rem 0; color:#64748b; }
+.plan-feats{ margin:0 0 1rem 0; padding-left:1.1rem; }
+.plan-feats li{ margin:.42rem 0; color:#0f172a; }
+
+/* CTA bar look */
+.plan-btn{
+  width:100%; border:1px solid #d7ecef; background:#eaf6f7;
+  color:#127782; font-weight:800; padding:.70rem 1rem; border-radius:.65rem;
+}
+.plan-btn:hover{ background:#def1f3; }
+
+/* responsive tweaks */
+@media (max-width:575.98px){
+  .offer-badge{ width:86px; height:86px; }
+  .plan-content{ margin-left:100px; }
+}
+
+
+/* Make plan cards square on md+; auto on mobile for better fit */
+@media (min-width: 768px){
+  .plan-card.square{
+    aspect-ratio: 1 / 1;         /* perfect square */
+  }
+}
+
+/* Ensure content fills the square nicely */
+.plan-card.square .plan-content{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+/* Keep button stuck to the bottom of the square */
+.plan-card.square .plan-btn{
+  margin-top:auto;
+}
+
+/* Slightly scale the round badge so it fits the square cleanly on md */
+@media (min-width: 768px){
+  .offer-badge{ width:92px; height:92px; }
+  .plan-content{ margin-left:104px; } /* matches your badge offset */
+}
+
+/* Optional: reduce padding inside square so text breathes */
+@media (min-width: 768px){
+  .plan-card.square{ padding:18px; }
+}
+
+</style>
+
+
+<body>
+<div class="topbar py-1 d-none d-md-block">
+  <div class="container d-flex align-items-center gap-3">
+    <span><i class="fa-solid fa-envelope me-2"></i>houseebox@gmail.com</span>
+    
+    <!-- UAE flag on far right -->
+    <span class="ms-auto d-inline-flex align-items-center gap-2">
+     <span><i class="fa-solid fa-phone me-2"></i>(234) 345-4574</span>
+    <span><i class="fa-solid fa-location-dot me-2"></i>(234) 345-4574</span>
+
+    </span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container-fluid align-items-center px-0">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex gap-1 flex-column flex-sm-row align-items-start align-items-sm-center" href="#">
+      <img src="KPO.png" alt="Kerala Property Online" class="brand-logo">
+    </a>
+
+    <!-- LEFT NAV (collapse on mobile, visible on lg) -->
+    <div class="collapse navbar-collapse order-lg-1 ms-3" id="mainNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active text-dark" href="/">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="propDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Properties</a>
+          <ul class="dropdown-menu" aria-labelledby="propDD">
+            <li><a class="dropdown-item" href="/properties/rent">For Rent</a></li>
+            <li><a class="dropdown-item" href="/properties/buy">For Sale</a></li>
+            <li><a class="dropdown-item" href="/properties/commercial">Commercial</a></li>
+            <li><a class="dropdown-item" href="/properties/agents">Agents</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" id="blogDD" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Blogs</a>
+          <ul class="dropdown-menu" aria-labelledby="blogDD">
+            <li><a class="dropdown-item" href="/blog">All Posts</a></li>
+            <li><a class="dropdown-item" href="/blog/tips">Tips & Guides</a></li>
+            <li><a class="dropdown-item" href="/blog/news">Market News</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Mobile-only items inside collapse -->
+      <form class="d-lg-none px-2 pt-2" role="search" action="/search" method="get">
+        <div class="input-group">
+          <select name="intent" class="form-select" style="max-width:110px">
+            <option value="buy" selected>Buy</option>
+            <option value="rent">Rent</option>
+            <option value="pg">PG</option>
+          </select>
+          <input name="q" type="search" class="form-control" placeholder="Locality / Project / Society" required>
+          <button class="btn btn-brand text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
+
+      <ul class="navbar-nav d-lg-none">
+        <li class="nav-item"><a href="/login" class="nav-link"><i class="fa-regular fa-user me-2"></i>Login / Register</a></li>
+        <li class="nav-item my-2"><a href="/add-property" class="btn btn-brand w-100 text-white">Add Property</a></li>
+      </ul>
+    </div>
+
+    <!-- CENTER SEARCH (desktop) -->
+    <form class="nav-search d-none d-lg-flex order-lg-2 mx-lg-3 flex-grow-1"
+          role="search" action="/search" method="get">
+      <input type="hidden" name="intent" id="navIntent" value="buy">
+      <div class="nav-search-group">
+        <div class="dropdown">
+          <button class="btn mode-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Buy</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="#" data-value="buy">Buy</a></li>
+            <li><a class="dropdown-item" href="#" data-value="rent">Rent</a></li>
+            <li><a class="dropdown-item" href="#" data-value="pg">PG</a></li>
+          </ul>
+        </div>
+        <input class="form-control q-input" name="q" type="search"
+               placeholder="Enter Locality / Project / Society / Landmark" required>
+        <button class="icon-btn" type="button" title="Use my location"><i class="fa-solid fa-location-crosshairs"></i></button>
+        <button class="icon-btn" type="button" title="Voice search"><i class="fa-solid fa-microphone"></i></button>
+        <button class="search-btn" type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </form>
+
+    <!-- RIGHT SIDE -->
+    <div class="d-flex align-items-center ms-auto order-lg-3">
+      <a href="" class="btn btn-link text-decoration-none d-none d-lg-inline-flex align-items-center me-2 text-dark">
+        <i class="fa-regular fa-user me-2"></i> Login / Register
+      </a>
+      <a href="add-property" class="btn btn-brand text-white d-none d-lg-inline-flex align-items-center me-2">
+        Add Property <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+      </a>
+    <button class="navbar-toggler ms-2 border-0" type="button"
+        data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<section class="agent-dash py-4">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+
+      <!-- LEFT: profile -->
+      <aside class="col-12 col-lg-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <div class="text-center mb-3">
+              <img src="avatar.jpg" class="rounded-circle shadow-sm" width="120" height="120" alt="avatar">
+            </div>
+
+            <h5 class="text-center mb-3">Akhil Davis</h5>
+            <ul class="list-unstyled small mb-3">
+              <li class="mb-2"><i class="fa-regular fa-envelope me-2"></i> akhilakd5299@gmail.com</li>
+              <li class="mb-2"><i class="fa-solid fa-phone me-2"></i> 8075955676</li>
+            </ul>
+
+            <div class="small mb-2">User verified with</div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="verify-pill"><i class="fa-solid fa-phone"></i></span>
+              <span class="verify-pill"><i class="fa-regular fa-envelope"></i></span>
+            </div>
+
+            <div class="d-grid gap-2">
+              <a href="/profile/edit" class="btn btn-outline-brand">
+                <i class="fa-regular fa-pen-to-square me-2"></i>Edit Profile
+              </a>
+              <button class="btn btn-outline-danger">
+                <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT: Plans -->
+      <main class="col-12 col-lg-8">
+        <h5 class="fw-semibold mb-3">Choose a listing plan</h5>
+
+        <div class="row g-3">
+
+          <!-- 30 Days FREE -->
+          <div class="col-12 col-md-6">
+            <a href="/add-property?plan=free30" class="plan-card square">
+              <div class="corner corner-teal"><span>FREE</span></div>
+
+              <div class="offer-badge">
+                <div class="big">30 DAYS</div>
+                <small>no charge</small>
+              </div>
+
+              <div class="plan-content">
+                <h6 class="plan-title">Starter Listing</h6>
+                <p class="plan-sub">Perfect to try things out</p>
+                <ul class="plan-feats">
+                  <li>1 active property</li>
+                  <li>Standard visibility</li>
+                  <li>Basic lead alerts</li>
+                </ul>
+                <button class="plan-btn" type="button">Add Property</button>
+              </div>
+            </a>
+          </div>
+
+          <!-- 65 Days ₹500 -->
+          <div class="col-12 col-md-6">
+            <a href="/add-property?plan=65d500" class="plan-card square">
+              <div class="corner corner-orange"><span>VALUE</span></div>
+
+              <div class="offer-badge offer-orange">
+                <div class="big">₹500</div>
+                <small>65 DAYS</small>
+              </div>
+
+              <div class="plan-content">
+                <h6 class="plan-title">Value Listing</h6>
+                <p class="plan-sub">Better placement, longer run</p>
+                <ul class="plan-feats">
+                  <li>Up to 3 active properties</li>
+                  <li>Improved visibility</li>
+                  <li>Standard + lead alerts</li>
+                </ul>
+                <button class="plan-btn" type="button">Add Property</button>
+              </div>
+            </a>
+          </div>
+
+          <!-- 90 Days ₹1000 -->
+          <div class="col-12 col-md-6 mx-md-auto">
+            <a href="/add-property?plan=90d1000" class="plan-card square">
+              <div class="corner corner-indigo"><span>POPULAR</span></div>
+
+              <div class="offer-badge offer-indigo">
+                <div class="big">₹1000</div>
+                <small>90 DAYS</small>
+              </div>
+
+              <div class="plan-content">
+                <h6 class="plan-title">Pro Listing</h6>
+                <p class="plan-sub">Maximum reach & duration</p>
+                <ul class="plan-feats">
+                  <li>Up to 5 active properties</li>
+                  <li>Priority placement</li>
+                  <li>Premium lead alerts</li>
+                </ul>
+                <button class="plan-btn" type="button">Add Property</button>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- CTA + Subscribe -->
+<section class="newsletter-cta position-relative overflow-hidden py-5 py-lg-6">
+  <div class="container position-relative">
+    <div class="row g-4 align-items-center">
+      <!-- Left: text -->
+      <div class="col-lg-6">
+        <h2 class="display-6 fw-bold text-white mb-3">
+          Find Your Dream Home<br>Today Where Comfort<br>Meets Style
+        </h2>
+        <p class="text-white-50 mb-4 pe-lg-5">
+          At HouseBox, we believe the finding a home is more a transaction—it's a
+          journey discovering the perfect space that fits your lifestyle.
+        </p>
+
+        <!-- Subscribe -->
+        <form class="subs-form" action="/subscribe" method="post">
+          <div class="input-group input-group-lg subs-group shadow-sm">
+            <input type="email" class="form-control border-0" placeholder="Email Address" required>
+            <button class="btn btn-brand text-white rounded-3" type="submit">
+              Subscribe <i class="fa-solid fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: building image -->
+      <div class="col-lg-6 position-relative order-first order-lg-last">
+        <img src="house.png" alt="Modern building"
+             class="cta-img d-block mx-auto mx-lg-0">
+      </div>
+    </div>
+  </div>
+
+ 
+</section>
+
+<!-- Teal strip -->
+<section class="brand-strip py-4">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7 d-flex align-items-center gap-3">
+        <img src="KPO.png" alt="Housefind" class="brand-mark">
+        <p class="mb-0 text-white-75 small">
+          Your trusted partner for buying, selling, and renting properties with seamless,
+          personalized solutions.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <div class="d-flex align-items-center gap-3 justify-content-lg-end">
+          <span class="text-white-75 small">Follow Us:</span>
+          <a class="soc" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a class="soc" href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer class="site-footer pt-5">
+  <div class="container">
+
+    <div class="row g-4 g-lg-5">
+      <!-- Brand + address -->
+      <div class="col-12 col-lg-4">
+        <div class="d-flex align-items-center mb-3">
+          <img src="/images/KPO.png" alt="Housefind" style="height:4
+          2px; width: 300px;" class="me-2">
+          <strong class="fs-5"></strong>
+        </div>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Address</li>
+          <li class="fw-semibold text-body">789 Queensberry Street, North<br>Melbourne VIC 3051, Australia.</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted mb-4">
+          <li class="text-uppercase text-body-secondary mb-1">Total Free Customer Care</li>
+          <li class="fw-semibold text-body">+(088) 123 456 789</li>
+        </ul>
+
+        <ul class="list-unstyled small text-muted">
+          <li class="text-uppercase text-body-secondary mb-1">Live Support?</li>
+          <li class="fw-semibold"><a href="mailto:hi@homez.com" class="link-body-emphasis">hi@homez.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Popular search + Discovery -->
+      <div class="col-6 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Popular Search</div>
+          <ul class="foot-links">
+            <li><a href="#">Apartment for Sale</a></li>
+            <li><a href="#">Apartment for Rent</a></li>
+            <li><a href="#">Offices for Sale</a></li>
+            <li><a href="#">Offices for Rent</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-block mt-3">
+          <div class="foot-title">Discovery</div>
+          <ul class="foot-links">
+            <li><a href="#">Chicago</a></li>
+            <li><a href="#">Los Angeles</a></li>
+            <li><a href="#">New Jersey</a></li>
+            <li><a href="#">New York</a></li>
+            <li><a href="#">California</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="col-6 col-lg-2">
+        <div class="footer-block">
+          <div class="foot-title">Quick Links</div>
+          <ul class="foot-links">
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Pricing Plans</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Newsletter + apps -->
+      <div class="col-12 col-lg-3">
+        <div class="footer-block">
+          <div class="foot-title">Keep Yourself Up to Date</div>
+
+          <form class="newsletter mb-3" action="/subscribe" method="post">
+            <div class="input-group input-group-sm">
+              <input type="email" class="form-control rounded-start-pill" placeholder="Your email" required>
+              <button class="btn btn-teal rounded-end-pill px-3" type="submit" aria-label="Subscribe">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+
+          <div class="foot-title mt-3">Apps</div>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#" class="app-badge">
+              <i class="fa-brands fa-apple fs-4 me-2"></i>
+              <span>
+                <small class="d-block lh-1">Download on the</small> Apple Store
+              </span>
+            </a>
+            <a href="#" class="app-badge">
+              <i class="fa-brands fa-google-play fs-4 me-2"></i>
+              <span>
+                <small class="d-block lh-1">Get it on</small> Google Play
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-rule mt-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center small text-muted py-3">
+      <span>© Homez — All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+
